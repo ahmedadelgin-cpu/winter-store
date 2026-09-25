@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز المساعدة والدعم | CASHMERE - Winter Luxury</title>
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F3EFEA;
+            --bg-accent: #EAE3D9;
+            --primary: #947150;
+            --primary-dark: #6D5135;
+            --primary-light: #CBB49E;
+            --text-dark: #27221E;
+            --text-muted: #6E6760;
+            --text-light: #9B948C;
+            --border-color: #E8E2D9;
+            --accent-green: #3F8A65;
+            --shadow-sm: 0 2px 8px rgba(39, 34, 30, 0.04);
+            --shadow-md: 0 8px 24px rgba(39, 34, 30, 0.08);
+            --shadow-lg: 0 16px 36px rgba(39, 34, 30, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --transition: all 0.28s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Cairo", "Tahoma", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 1. الهيدر وشريط التنقل */
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-box {
+            text-decoration: none;
+            display: inline-block;
+        }
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+        .brand-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            display: block;
+        }
+        .back-to-home {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .back-to-home:hover {
+            color: var(--primary-dark);
+            background-color: var(--bg-secondary);
+        }
+
+        /* مبدل اللغات */
+        .lang-switch-box {
+            display: inline-flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2px 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            gap: 2px;
+        }
+        .lang-opt-btn {
+            background: none;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .lang-opt-btn.active {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+        }
+
+        /* 2. بانر الترحيب بالمساعدة */
+        .help-hero {
+            background: linear-gradient(135deg, #FBF8F5 0%, #EDE6DC 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.84rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 3. بطاقات قنوات التواصل */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .support-channels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        .channel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .channel-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+        .channel-icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .channel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+        .channel-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .channel-link {
+            display: inline-block;
+            color: var(--primary-dark);
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        .channel-link:hover { text-decoration: underline; }
+
+        /* 4. قسم الأسئلة الشائعة (Accordion) */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 860px;
+            margin: 0 auto 60px;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-question {
+            padding: 18px 22px;
+            font-size: 1.02rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            background-color: var(--bg-secondary);
+        }
+        .faq-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            background-color: #FAF8F5;
+            padding: 0 22px;
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            line-height: 1.7;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 250px;
+            padding: 16px 22px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* 5. نموذج التواصل المباشر */
+        .contact-box {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 36px 30px;
+            box-shadow: var(--shadow-md);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: var(--text-dark);
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            outline: none;
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+        .form-input:focus, .form-textarea:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(148, 113, 80, 0.15);
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .submit-btn:hover { background-color: var(--primary); }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--accent-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. الهيدر -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-box">
+                <span class="brand-name">CASHMERE</span>
+                <span class="brand-sub">Winter Collection 2026</span>
+            </a>
+
+            <div style="display:flex; align-items:center; gap:14px;">
+                <div class="lang-switch-box">
+                    <button class="lang-opt-btn active" id="btnLangAr" onclick="setLanguage('ar')">العربية</button>
+                    <span style="color:var(--border-color);">|</span>
+                    <button class="lang-opt-btn" id="btnLangEn" onclick="setLanguage('en')">English</button>
+                </div>
+
+                <a href="index.html" class="back-to-home" id="btnBackHome">
+                    <span>←</span>
+                    <span id="txtBackHome">العودة للتسوق</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. البانر -->
+    <section class="help-hero">
+        <span class="hero-badge" id="heroBadge">فريق دعم العملاء في خدمتك</span>
+        <h1 class="hero-title" id="heroTitle">كيف يمكننا مساعدتك اليوم؟</h1>
+        <p class="hero-subtitle" id="heroSubtitle">إجابات على أكثر الأسئلة شيوعاً حول الشحن، الاسترجاع، وطرق العناية بأقمشة الكشمير والصوف الفاخرة.</p>
+    </section>
+
+    <!-- 3. بطاقات التواصل -->
+    <div class="container">
+        <div class="support-channels">
+            <div class="channel-card">
+                <span class="channel-icon">📞</span>
+                <h3 class="channel-title" id="tPhone">الاتصال المباشر</h3>
+                <p class="channel-desc" id="dPhone">فريقنا متاح للرد على استفساراتكم</p>
+                <a href="tel:8001239468" class="channel-link">800-123-WINTER</a>
+            </div>
+
+            <div class="channel-card">
+                <span class="channel-icon">💬</span>
+                <h3 class="channel-title" id="tWhatsApp">محادثة واتساب</h3>
+                <p class="channel-desc" id="dWhatsApp">تواصل فوري وسريع مع خدمة العملاء</p>
+                <a href="https://wa.me/966500000000" target="_blank" class="channel-link">+966 50 000 0000</a>
+            </div>
+
+            <div class="channel-card">
+                <span class="channel-icon">✉️</span>
+                <h3 class="channel-title" id="tEmail">البريد الإلكتروني</h3>
+                <p class="channel-desc" id="dEmail">الرد في غضون 24 ساعة كحد أقصى</p>
+                <a href="mailto:support@cashmere-winter.com" class="channel-link">support@cashmere.com</a>
+            </div>
+
+            <div class="channel-card">
+                <span class="channel-icon">🕒</span>
+                <h3 class="channel-title" id="tHours">ساعات العمل</h3>
+                <p class="channel-desc" id="dHours">يومياً من السبت إلى الخميس</p>
+                <span style="font-weight:700; color:var(--primary-dark);">9:00 ص - 10:00 م</span>
+            </div>
+        </div>
+
+        <!-- 4. الأسئلة الشائعة -->
+        <h2 class="section-title" id="titleFaq">الأسئلة الأكثر شيوعاً</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span id="q1">ما هي مدة وتكلفة الشحن والتوصيل؟</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer" id="a1">
+                    يستغرق الشحن داخل المملكة العربية السعودية ومصر بين 2 إلى 4 أيام عمل. الشحن مجاني لجميع الطلبات بقيمة 350 ر.س فأكثر، وللطلبات الأقل من ذلك تكون رسوم الشحن 25 ر.س.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span id="q2">ما هي سياسة الاستبدال والاسترجاع؟</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer" id="a2">
+                    نضمن لك حق الاستبدال أو الاسترجاع خلال 14 يوماً من استلام الشحنة، بشرط أن تكون القطعة في حالتها الأصلية وبطاقتها المرفقة، والتغليف الأصلي دون أي تلف.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span id="q3">ما هي طرق الدفع المتاحة في المتجر؟</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer" id="a3">
+                    نوفر طرق دفع متعددة وآمنة تماماً: بطاقات مدى، فيزا، ماستركارد، Apple Pay، بالإضافة إلى خيار الدفع عند الاستلام في معظم المناطق.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span id="q4">كيف أحافظ على أقمشة الكشمير والصوف الطبيعي؟</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer" id="a4">
+                    يُفضل الغسيل اليدوي بالماء البارد وشامبو خاص بالصوف، أو التنظيف الجاف (Dry Clean). تجنب عصر القطعة باليدين بشدة، وافردها على سطح مستوٍ لتجف بدلاً من تعليقها لمنع تمدد الصوف.
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. نموذج إرسال رسالة -->
+        <h2 class="section-title" id="titleContact">هل تحتاج إلى مساعدة إضافية؟</h2>
+        <div class="contact-box">
+            <form onsubmit="handleContact(event)">
+                <div class="form-group">
+                    <label class="form-label" id="lblFormName">الاسم الكريم</label>
+                    <input type="text" class="form-input" id="inpName" required placeholder="أدخل اسمك">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" id="lblFormEmail">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" id="inpEmail" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" id="lblFormSubject">موضوع الاستفسار</label>
+                    <input type="text" class="form-input" id="inpSubject" required placeholder="مثال: استفسار بخصوص مقاس معطف">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" id="lblFormMsg">تفاصيل الرسالة</label>
+                    <textarea class="form-textarea" id="inpMsg" required placeholder="اكتب استفسارك هنا بالتفصيل..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="btnSend">إرسال الاستفسار الآن</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-msg" id="toastMsg">تم استلام استفسارك بنجاح، وسيتواصل معك فريقنا قريباً!</div>
+
+    <footer>
+        <p>© 2026 CASHMERE Luxury Collection. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const helpTexts = {
+            ar: {
+                backHome: "العودة للتسوق",
+                heroBadge: "فريق دعم العملاء في خدمتك",
+                heroTitle: "كيف يمكننا مساعدتك اليوم؟",
+                heroSubtitle: "إجابات على أكثر الأسئلة شيوعاً حول الشحن، الاسترجاع، وطرق العناية بأقمشة الكشمير والصوف الفاخرة.",
+                tPhone: "الاتصال المباشر",
+                dPhone: "فريقنا متاح للرد على استفساراتكم",
+                tWhatsApp: "محادثة واتساب",
+                dWhatsApp: "تواصل فوري وسريع مع خدمة العملاء",
+                tEmail: "البريد الإلكتروني",
+                dEmail: "الرد في غضون 24 ساعة كحد أقصى",
+                tHours: "ساعات العمل",
+                dHours: "يومياً من السبت إلى الخميس",
+                titleFaq: "الأسئلة الأكثر شيوعاً",
+                titleContact: "هل تحتاج إلى مساعدة إضافية؟",
+                lblFormName: "الاسم الكريم",
+                lblFormEmail: "البريد الإلكتروني",
+                lblFormSubject: "موضوع الاستفسار",
+                lblFormMsg: "تفاصيل الرسالة",
+                btnSend: "إرسال الاستفسار الآن",
+                toast: "تم استلام استفسارك بنجاح، وسيتواصل معك فريقنا قريباً!"
+            },
+            en: {
+                backHome: "Back to Shop",
+                heroBadge: "Customer Support at Your Service",
+                heroTitle: "How can we help you today?",
+                heroSubtitle: "Find answers to common questions about shipping, returns, and cashmere wool garment care.",
+                tPhone: "Direct Phone Call",
+                dPhone: "Our team is ready to assist you",
+                tWhatsApp: "WhatsApp Chat",
+                dWhatsApp: "Fast and immediate customer service",
+                tEmail: "Customer Email",
+                dEmail: "Reply within 24 hours maximum",
+                tHours: "Working Hours",
+                dHours: "Saturday to Thursday",
+                titleFaq: "Frequently Asked Questions",
+                titleContact: "Need Further Assistance?",
+                lblFormName: "Full Name",
+                lblFormEmail: "Email Address",
+                lblFormSubject: "Subject",
+                lblFormMsg: "Your Message",
+                btnSend: "Send Inquiry Now",
+                toast: "Your message has been sent successfully! Our team will reach out soon."
+            }
+        };
+
+        let currentLang = localStorage.getItem("preferred_lang") || "ar";
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem("preferred_lang", currentLang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            const root = document.getElementById("htmlRoot");
+            const t = helpTexts[currentLang];
+
+            root.setAttribute("lang", currentLang);
+            root.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            document.getElementById("btnBackHome").querySelector("span:first-child").textContent = currentLang === "ar" ? "←" : "→";
+            document.getElementById("btnLangAr").classList.toggle("active", currentLang === "ar");
+            document.getElementById("btnLangEn").classList.toggle("active", currentLang === "en");
+
+            document.getElementById("txtBackHome").textContent = t.backHome;
+            document.getElementById("heroBadge").textContent = t.heroBadge;
+            document.getElementById("heroTitle").textContent = t.heroTitle;
+            document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
+
+            document.getElementById("tPhone").textContent = t.tPhone;
+            document.getElementById("dPhone").textContent = t.dPhone;
+            document.getElementById("tWhatsApp").textContent = t.tWhatsApp;
+            document.getElementById("dWhatsApp").textContent = t.dWhatsApp;
+            document.getElementById("tEmail").textContent = t.tEmail;
+            document.getElementById("dEmail").textContent = t.dEmail;
+            document.getElementById("tHours").textContent = t.tHours;
+            document.getElementById("dHours").textContent = t.dHours;
+
+            document.getElementById("titleFaq").textContent = t.titleFaq;
+            document.getElementById("titleContact").textContent = t.titleContact;
+            document.getElementById("lblFormName").textContent = t.lblFormName;
+            document.getElementById("lblFormEmail").textContent = t.lblFormEmail;
+            document.getElementById("lblFormSubject").textContent = t.lblFormSubject;
+            document.getElementById("lblFormMsg").textContent = t.lblFormMsg;
+            document.getElementById("btnSend").textContent = t.btnSend;
+        }
+
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            item.classList.toggle("active");
+        }
+
+        function handleContact(e) {
+            e.preventDefault();
+            const toast = document.getElementById("toastMsg");
+            toast.textContent = helpTexts[currentLang].toast;
+            toast.classList.add("show");
+            e.target.reset();
+            setTimeout(() => toast.classList.remove("show"), 3200);
+        }
+
+        applyLanguage();
+    </script>
+</body>
+</html>

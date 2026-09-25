@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تتبع الشحنات والطلبات | CASHMERE - Winter Luxury</title>
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F3EFEA;
+            --bg-accent: #EAE3D9;
+            --primary: #947150;
+            --primary-dark: #6D5135;
+            --primary-light: #CBB49E;
+            --text-dark: #27221E;
+            --text-muted: #6E6760;
+            --text-light: #9B948C;
+            --border-color: #E8E2D9;
+            --accent-green: #3F8A65;
+            --shadow-sm: 0 2px 8px rgba(39, 34, 30, 0.04);
+            --shadow-md: 0 8px 24px rgba(39, 34, 30, 0.08);
+            --shadow-lg: 0 16px 36px rgba(39, 34, 30, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --transition: all 0.28s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Cairo", "Tahoma", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 1. الهيدر وشريط التنقل */
+        header {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-box {
+            text-decoration: none;
+            display: inline-block;
+        }
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+        .brand-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            display: block;
+        }
+        .back-to-home {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .back-to-home:hover {
+            color: var(--primary-dark);
+            background-color: var(--bg-secondary);
+        }
+
+        /* مبدل اللغات */
+        .lang-switch-box {
+            display: inline-flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2px 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            gap: 2px;
+        }
+        .lang-opt-btn {
+            background: none;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .lang-opt-btn.active {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+        }
+
+        /* 2. بانر الترحيب */
+        .hero {
+            background: linear-gradient(135deg, #FBF8F5 0%, #EDE6DC 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 45px 20px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.84rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 3. صندوق البحث عن الطلب */
+        .container {
+            max-width: 850px;
+            margin: -25px auto 40px;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+        .search-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+        }
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 14px;
+            align-items: end;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-label {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .form-input {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-input:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(148, 113, 80, 0.15);
+        }
+        .track-btn {
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 12px 26px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            height: 47px;
+            transition: var(--transition);
+        }
+        .track-btn:hover { background-color: var(--primary); }
+
+        /* 4. بطاقة نتيجة التتبع */
+        .result-card {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-top: 30px;
+            box-shadow: var(--shadow-sm);
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .order-meta-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+        .order-meta-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .status-badge {
+            background-color: #EBF7EE;
+            color: var(--accent-green);
+            border: 1px solid #C4E7CD;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* شريط الخطوات (Stepper) */
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 40px 10px;
+        }
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 5%;
+            right: 5%;
+            height: 4px;
+            background: var(--bg-secondary);
+            z-index: 1;
+        }
+        .stepper-progress {
+            position: absolute;
+            top: 20px;
+            right: 5%;
+            width: 65%;
+            height: 4px;
+            background: var(--accent-green);
+            z-index: 2;
+            transition: width 0.5s ease;
+        }
+        html[dir="ltr"] .stepper-progress {
+            right: auto;
+            left: 5%;
+        }
+
+        .step-item {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            flex: 1;
+        }
+        .step-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 3px solid var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        .step-item.completed .step-circle {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+        }
+        .step-item.active .step-circle {
+            background: #FFFFFF;
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(148, 113, 80, 0.2);
+        }
+        .step-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .step-item.completed .step-label,
+        .step-item.active .step-label {
+            color: var(--text-dark);
+        }
+        .step-date {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+
+        /* تفاصيل الشحنة الإضافية */
+        .shipping-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            margin-top: 30px;
+        }
+        .detail-item h5 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .detail-item p {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 760px) {
+            .search-form { grid-template-columns: 1fr; }
+            .track-btn { height: auto; }
+            .stepper { flex-direction: column; gap: 24px; margin: 20px 0; }
+            .stepper::before, .stepper-progress { display: none; }
+            .step-item { display: flex; align-items: center; text-align: start; gap: 14px; }
+            .step-circle { margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. الهيدر -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-box">
+                <span class="brand-name">CASHMERE</span>
+                <span class="brand-sub">Winter Collection 2026</span>
+            </a>
+
+            <div style="display:flex; align-items:center; gap:14px;">
+                <div class="lang-switch-box">
+                    <button class="lang-opt-btn active" id="btnLangAr" onclick="setLanguage('ar')">العربية</button>
+                    <span style="color:var(--border-color);">|</span>
+                    <button class="lang-opt-btn" id="btnLangEn" onclick="setLanguage('en')">English</button>
+                </div>
+
+                <a href="index.html" class="back-to-home" id="btnBackHome">
+                    <span>←</span>
+                    <span id="txtBackHome">العودة للتسوق</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. البانر الترحيبي -->
+    <section class="hero">
+        <span class="hero-badge" id="heroBadge">متابعة دقيقة وفورية للشحنة</span>
+        <h1 class="hero-title" id="heroTitle">أين وصل طلبي؟</h1>
+        <p class="hero-subtitle" id="heroSubtitle">أدخل رقم الطلب المسجل لتتبع مسار شحنتك ولحظة وصولها إلى باب منزلك بكل سهولة.</p>
+    </section>
+
+    <!-- 3. صندوق البحث عن الشحنة -->
+    <div class="container">
+        <div class="search-card">
+            <form class="search-form" onsubmit="handleTrack(event)">
+                <div class="form-group">
+                    <label class="form-label" id="lblOrderNo">رقم الطلب</label>
+                    <input type="text" class="form-input" id="orderNoInput" placeholder="مثال: ORD-982415" value="ORD-982415" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="lblPhone">رقم الجوال أو البريد الإلكتروني</label>
+                    <input type="text" class="form-input" id="orderPhoneInput" placeholder="05xxxxxxxx أو البريد" value="0551234567" required>
+                </div>
+
+                <button type="submit" class="track-btn" id="btnTrack">تتبع الشحنة</button>
+            </form>
+        </div>
+
+        <!-- 4. كارت نتيجة التتبع (يظهر بعد البحث) -->
+        <div class="result-card" id="resultCard">
+            <div class="result-header">
+                <div>
+                    <h3 class="order-meta-title" id="displayOrderNo">طلب #ORD-982415</h3>
+                    <p class="order-meta-sub" id="displayOrderDate">تاريخ الطلب: 24 نوفمبر 2026</p>
+                </div>
+                <div class="status-badge" id="displayStatus">
+                    <span>🚚</span>
+                    <span id="txtStatusBadge">الشحنة في الطريق للتسليم</span>
+                </div>
+            </div>
+
+            <!-- شريط الخطوات الزمني -->
+            <div class="stepper">
+                <div class="stepper-progress" id="stepperProgress"></div>
+
+                <div class="step-item completed">
+                    <div class="step-circle">✓</div>
+                    <div class="step-label" id="s1">تم تأكيد الطلب</div>
+                    <div class="step-date">24 نوفمبر - 02:15 م</div>
+                </div>
+
+                <div class="step-item completed">
+                    <div class="step-circle">✓</div>
+                    <div class="step-label" id="s2">التجهيز والتغليف الفاخر</div>
+                    <div class="step-date">25 نوفمبر - 09:30 ص</div>
+                </div>
+
+                <div class="step-item active">
+                    <div class="step-circle">🚚</div>
+                    <div class="step-label" id="s3">في الطريق للتوصيل</div>
+                    <div class="step-date">اليوم - 11:20 ص</div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-circle">4</div>
+                    <div class="step-label" id="s4">تم الاستلام بنجاح</div>
+                    <div class="step-date" id="estDate">متوقع خلال 24 ساعة</div>
+                </div>
+            </div>
+
+            <!-- تفاصيل الشحن -->
+            <div class="shipping-details-grid">
+                <div class="detail-item">
+                    <h5 id="lblCourier">شركة الشحن:</h5>
+                    <p>أرامكس (Aramex Express)</p>
+                </div>
+                <div class="detail-item">
+                    <h5 id="lblWaybill">رقم البوليصة:</h5>
+                    <p>AWB-8392019482</p>
+                </div>
+                <div class="detail-item">
+                    <h5 id="lblCity">الوجهة:</h5>
+                    <p id="txtDest">الرياض، المملكة العربية السعودية</p>
+                </div>
+                <div class="detail-item">
+                    <h5 id="lblDelivery">الموعد المتوقع:</h5>
+                    <p style="color:var(--accent-green);" id="txtEstTime">غداً قبل الساعة 6 مساءً</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 CASHMERE Luxury Collection. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const trackTexts = {
+            ar: {
+                backHome: "العودة للتسوق",
+                heroBadge: "متابعة دقيقة وفورية للشحنة",
+                heroTitle: "أين وصل طلبي؟",
+                heroSubtitle: "أدخل رقم الطلب المسجل لتتبع مسار شحنتك ولحظة وصولها إلى باب منزلك بكل سهولة.",
+                lblOrderNo: "رقم الطلب",
+                lblPhone: "رقم الجوال أو البريد الإلكتروني",
+                btnTrack: "تتبع الشحنة",
+                statusBadge: "الشحنة في الطريق للتسليم",
+                s1: "تم تأكيد الطلب",
+                s2: "التجهيز والتغليف الفاخر",
+                s3: "في الطريق للتوصيل",
+                s4: "تم الاستلام بنجاح",
+                estDate: "متوقع خلال 24 ساعة",
+                lblCourier: "شركة الشحن:",
+                lblWaybill: "رقم البوليصة:",
+                lblCity: "الوجهة:",
+                txtDest: "الرياض، المملكة العربية السعودية",
+                lblDelivery: "الموعد المتوقع:",
+                txtEstTime: "غداً قبل الساعة 6 مساءً"
+            },
+            en: {
+                backHome: "Back to Shop",
+                heroBadge: "Accurate Real-Time Tracking",
+                heroTitle: "Where is my order?",
+                heroSubtitle: "Enter your order ID and phone/email to track your luxury parcel right to your doorstep.",
+                lblOrderNo: "Order Number",
+                lblPhone: "Phone Number or Email",
+                btnTrack: "Track Shipment",
+                statusBadge: "Out for Delivery",
+                s1: "Order Confirmed",
+                s2: "Luxury Packaging",
+                s3: "Out for Delivery",
+                s4: "Delivered",
+                estDate: "Expected in 24 hrs",
+                lblCourier: "Courier:",
+                lblWaybill: "Waybill No:",
+                lblCity: "Destination:",
+                txtDest: "Riyadh, Saudi Arabia",
+                lblDelivery: "Estimated Time:",
+                txtEstTime: "Tomorrow before 6:00 PM"
+            }
+        };
+
+        let currentLang = localStorage.getItem("preferred_lang") || "ar";
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem("preferred_lang", currentLang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            const root = document.getElementById("htmlRoot");
+            const t = trackTexts[currentLang];
+
+            root.setAttribute("lang", currentLang);
+            root.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            document.getElementById("btnBackHome").querySelector("span:first-child").textContent = currentLang === "ar" ? "←" : "→";
+            document.getElementById("btnLangAr").classList.toggle("active", currentLang === "ar");
+            document.getElementById("btnLangEn").classList.toggle("active", currentLang === "en");
+
+            document.getElementById("txtBackHome").textContent = t.backHome;
+            document.getElementById("heroBadge").textContent = t.heroBadge;
+            document.getElementById("heroTitle").textContent = t.heroTitle;
+            document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
+            document.getElementById("lblOrderNo").textContent = t.lblOrderNo;
+            document.getElementById("lblPhone").textContent = t.lblPhone;
+            document.getElementById("btnTrack").textContent = t.btnTrack;
+
+            document.getElementById("txtStatusBadge").textContent = t.statusBadge;
+            document.getElementById("s1").textContent = t.s1;
+            document.getElementById("s2").textContent = t.s2;
+            document.getElementById("s3").textContent = t.s3;
+            document.getElementById("s4").textContent = t.s4;
+            document.getElementById("estDate").textContent = t.estDate;
+
+            document.getElementById("lblCourier").textContent = t.lblCourier;
+            document.getElementById("lblWaybill").textContent = t.lblWaybill;
+            document.getElementById("lblCity").textContent = t.lblCity;
+            document.getElementById("txtDest").textContent = t.txtDest;
+            document.getElementById("lblDelivery").textContent = t.lblDelivery;
+            document.getElementById("txtEstTime").textContent = t.txtEstTime;
+        }
+
+        function handleTrack(e) {
+            e.preventDefault();
+            const orderNo = document.getElementById("orderNoInput").value.trim();
+            document.getElementById("displayOrderNo").textContent = (currentLang === 'ar' ? "طلب #" : "Order #") + orderNo;
+            document.getElementById("resultCard").style.display = "block";
+            document.getElementById("resultCard").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // إظهار النتيجة افتراضياً للتجربة
+        applyLanguage();
+        document.getElementById("resultCard").style.display = "block";
+    </script>
+</body>
+</html>

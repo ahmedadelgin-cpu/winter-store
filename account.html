@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول / حسابي | CASHMERE - Winter Luxury</title>
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F3EFEA;
+            --bg-accent: #EAE3D9;
+            --primary: #947150;
+            --primary-dark: #6D5135;
+            --primary-light: #CBB49E;
+            --text-dark: #27221E;
+            --text-muted: #6E6760;
+            --text-light: #9B948C;
+            --border-color: #E8E2D9;
+            --accent-green: #3F8A65;
+            --accent-red: #D9534F;
+            --shadow-sm: 0 2px 8px rgba(39, 34, 30, 0.04);
+            --shadow-md: 0 8px 24px rgba(39, 34, 30, 0.08);
+            --shadow-lg: 0 16px 36px rgba(39, 34, 30, 0.12);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --transition: all 0.28s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Cairo", "Tahoma", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 1. الشريط العلوي البسيط */
+        .header-nav {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+        }
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-box {
+            text-decoration: none;
+            display: inline-block;
+        }
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+        .brand-sub {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            display: block;
+        }
+        .back-to-home {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .back-to-home:hover {
+            color: var(--primary-dark);
+            background-color: var(--bg-secondary);
+        }
+
+        /* مبدل اللغات */
+        .lang-switch-box {
+            display: inline-flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2px 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            gap: 2px;
+        }
+        .lang-opt-btn {
+            background: none;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .lang-opt-btn.active {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+        }
+
+        /* 2. الحاوية الرئيسية للمحتوى */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 480px;
+            padding: 36px 32px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--bg-secondary);
+            margin-bottom: 28px;
+            gap: 10px;
+        }
+        .auth-tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        .auth-tab-btn.active {
+            color: var(--primary-dark);
+        }
+        .auth-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* الحقول والنماذج */
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: var(--text-dark);
+        }
+        .form-input {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            outline: none;
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+        .form-input:focus {
+            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(148, 113, 80, 0.15);
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            margin-bottom: 24px;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .forgot-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(109, 81, 53, 0.2);
+        }
+        .submit-btn:hover {
+            background-color: var(--primary);
+        }
+
+        /* لوحة تحكم الحساب (تظهر عند تسجيل الدخول) */
+        .profile-box {
+            display: none;
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 76px;
+            height: 76px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 16px;
+        }
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+        .profile-email {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        .profile-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: start;
+            margin-bottom: 24px;
+        }
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .profile-menu-item:hover {
+            background: var(--bg-accent);
+            color: var(--primary-dark);
+        }
+        .logout-btn {
+            width: 100%;
+            background: none;
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+            padding: 11px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .logout-btn:hover {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* رسائل التنبيه التفاعلية */
+        .alert-box {
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 18px;
+            font-size: 0.85rem;
+            display: none;
+        }
+        .alert-success {
+            background-color: #EBF7EE;
+            color: var(--accent-green);
+            border: 1px solid #C4E7CD;
+        }
+        .alert-danger {
+            background-color: #FDF0EF;
+            color: var(--accent-red);
+            border: 1px solid #F6C8C7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. شريط التنقل العلوي -->
+    <header class="header-nav">
+        <div class="header-container">
+            <a href="index.html" class="logo-box">
+                <span class="brand-name">CASHMERE</span>
+                <span class="brand-sub">Winter Collection 2026</span>
+            </a>
+
+            <div style="display:flex; align-items:center; gap:14px;">
+                <!-- مبدل اللغات -->
+                <div class="lang-switch-box">
+                    <button class="lang-opt-btn active" id="btnLangAr" onclick="setLanguage('ar')">العربية</button>
+                    <span style="color:var(--border-color);">|</span>
+                    <button class="lang-opt-btn" id="btnLangEn" onclick="setLanguage('en')">English</button>
+                </div>
+
+                <a href="index.html" class="back-to-home" id="btnBackHome">
+                    <span>←</span>
+                    <span id="txtBackHome">العودة للتسوق</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. محتوى الصفحة -->
+    <main class="main-wrapper">
+        <div class="auth-card">
+
+            <!-- تبويبات تسجيل الدخول وإنشاء الحساب -->
+            <div class="auth-tabs" id="authTabs">
+                <button class="auth-tab-btn active" id="tabLogin" onclick="switchTab('login')">تسجيل الدخول</button>
+                <button class="auth-tab-btn" id="tabRegister" onclick="switchTab('register')">إنشاء حساب جديد</button>
+            </div>
+
+            <!-- رسالة نجاح أو خطأ -->
+            <div class="alert-box" id="alertBox"></div>
+
+            <!-- نموذج تسجيل الدخول -->
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" id="lblLoginEmail">البريد الإلكتروني أو رقم الهاتف</label>
+                    <input type="text" class="form-input" id="loginEmail" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="lblLoginPassword">كلمة المرور</label>
+                    <input type="password" class="form-input" id="loginPass" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span id="lblRemember">تذكر بياناتي</span>
+                    </label>
+                    <a href="#" class="forgot-link" id="linkForgot">نسيت كلمة المرور؟</a>
+                </div>
+
+                <button type="submit" class="submit-btn" id="btnLoginSubmit">دخول إلى الحساب</button>
+            </form>
+
+            <!-- نموذج إنشاء حساب جديد -->
+            <form id="registerForm" style="display:none;" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label class="form-label" id="lblRegName">الاسم الكامل</label>
+                    <input type="text" class="form-input" id="regName" placeholder="أدخل اسمك الكريم" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="lblRegEmail">البريد الإلكتروني</label>
+                    <input type="email" class="form-input" id="regEmail" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="lblRegPhone">رقم الجوال</label>
+                    <input type="tel" class="form-input" id="regPhone" placeholder="05xxxxxxxx" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" id="lblRegPass">كلمة المرور</label>
+                    <input type="password" class="form-input" id="regPass" placeholder="•••••••• (6 أحرف على الأقل)" required minlength="6">
+                </div>
+
+                <button type="submit" class="submit-btn" id="btnRegisterSubmit">إنشاء حساب جديد</button>
+            </form>
+
+            <!-- لوحة تحكم الحساب (تظهر عند الدخول) -->
+            <div class="profile-box" id="profileBox">
+                <div class="profile-avatar">👤</div>
+                <h3 class="profile-name" id="userDisplayName">أهلاً بك!</h3>
+                <p class="profile-email" id="userDisplayEmail">email@domain.com</p>
+
+                <div class="profile-menu">
+                    <a href="checkout.html" class="profile-menu-item">
+                        <span id="menuMyOrders">📦 طلباتي وسجل الشراء</span>
+                        <span>←</span>
+                    </a>
+                    <a href="index.html" class="profile-menu-item">
+                        <span id="menuShop">🛍️ متابعة التسوق</span>
+                        <span>←</span>
+                    </a>
+                </div>
+
+                <button class="logout-btn" onclick="logout()" id="btnLogout">تسجيل الخروج</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 CASHMERE Luxury Collection. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        // قواميس اللغتين
+        const texts = {
+            ar: {
+                backHome: "العودة للتسوق",
+                tabLogin: "تسجيل الدخول",
+                tabRegister: "إنشاء حساب جديد",
+                lblLoginEmail: "البريد الإلكتروني أو رقم الهاتف",
+                lblLoginPassword: "كلمة المرور",
+                lblRemember: "تذكر بياناتي",
+                linkForgot: "نسيت كلمة المرور؟",
+                btnLoginSubmit: "دخول إلى الحساب",
+                lblRegName: "الاسم الكامل",
+                lblRegEmail: "البريد الإلكتروني",
+                lblRegPhone: "رقم الجوال",
+                lblRegPass: "كلمة المرور",
+                btnRegisterSubmit: "إنشاء حساب جديد ",
+                welcomeBack: "أهلاً بك مجدداً، ",
+                menuMyOrders: "📦 طلباتي وسجل الشراء",
+                menuShop: "🛍️ متابعة التسوق في المتجر",
+                btnLogout: "تسجيل الخروج",
+                msgLoginSuccess: "تم تسجيل الدخول بنجاح!",
+                msgRegisterSuccess: "تم إنشاء حسابك بنجاح، مرحباً بك في كشمير!",
+                msgLoggedOut: "تم تسجيل الخروج بنجاح."
+            },
+            en: {
+                backHome: "Back to Shop",
+                tabLogin: "Sign In",
+                tabRegister: "Create Account",
+                lblLoginEmail: "Email or Phone Number",
+                lblLoginPassword: "Password",
+                lblRemember: "Remember Me",
+                linkForgot: "Forgot Password?",
+                btnLoginSubmit: "Sign In to Account",
+                lblRegName: "Full Name",
+                lblRegEmail: "Email Address",
+                lblRegPhone: "Phone Number",
+                lblRegPass: "Password",
+                btnRegisterSubmit: "Create Cashmere Account",
+                welcomeBack: "Welcome back, ",
+                menuMyOrders: "📦 My Orders & History",
+                menuShop: "🛍️ Continue Shopping",
+                btnLogout: "Sign Out",
+                msgLoginSuccess: "Logged in successfully!",
+                msgRegisterSuccess: "Account created successfully, welcome to CASHMERE!",
+                msgLoggedOut: "You have signed out."
+            }
+        };
+
+        let currentLang = localStorage.getItem("preferred_lang") || "ar";
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem("preferred_lang", currentLang);
+            applyLang();
+        }
+
+        function applyLang() {
+            const root = document.getElementById("htmlRoot");
+            const t = texts[currentLang];
+
+            root.setAttribute("lang", currentLang);
+            root.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            // تنسيق زر الرجوع حسب الاتجاه
+            document.getElementById("btnBackHome").querySelector("span:first-child").textContent = currentLang === "ar" ? "←" : "→";
+
+            // أزرار اللغة
+            document.getElementById("btnLangAr").classList.toggle("active", currentLang === "ar");
+            document.getElementById("btnLangEn").classList.toggle("active", currentLang === "en");
+
+            // النصوص
+            document.getElementById("txtBackHome").textContent = t.backHome;
+            document.getElementById("tabLogin").textContent = t.tabLogin;
+            document.getElementById("tabRegister").textContent = t.tabRegister;
+            document.getElementById("lblLoginEmail").textContent = t.lblLoginEmail;
+            document.getElementById("lblLoginPassword").textContent = t.lblLoginPassword;
+            document.getElementById("lblRemember").textContent = t.lblRemember;
+            document.getElementById("linkForgot").textContent = t.linkForgot;
+            document.getElementById("btnLoginSubmit").textContent = t.btnLoginSubmit;
+
+            document.getElementById("lblRegName").textContent = t.lblRegName;
+            document.getElementById("lblRegEmail").textContent = t.lblRegEmail;
+            document.getElementById("lblRegPhone").textContent = t.lblRegPhone;
+            document.getElementById("lblRegPass").textContent = t.lblRegPass;
+            document.getElementById("btnRegisterSubmit").textContent = t.btnRegisterSubmit;
+
+            document.getElementById("menuMyOrders").textContent = t.menuMyOrders;
+            document.getElementById("menuShop").textContent = t.menuShop;
+            document.getElementById("btnLogout").textContent = t.btnLogout;
+        }
+
+        function switchTab(type) {
+            const isLogin = type === 'login';
+            document.getElementById("tabLogin").classList.toggle("active", isLogin);
+            document.getElementById("tabRegister").classList.toggle("active", !isLogin);
+            document.getElementById("loginForm").style.display = isLogin ? "block" : "none";
+            document.getElementById("registerForm").style.display = isLogin ? "none" : "block";
+            hideAlert();
+        }
+
+        function showAlert(msg, isSuccess = true) {
+            const alert = document.getElementById("alertBox");
+            alert.textContent = msg;
+            alert.className = "alert-box " + (isSuccess ? "alert-success" : "alert-danger");
+            alert.style.display = "block";
+        }
+
+        function hideAlert() {
+            document.getElementById("alertBox").style.display = "none";
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const user = { name: email.split('@')[0], email: email };
+            localStorage.setItem("cashmere_user", JSON.stringify(user));
+            showAlert(texts[currentLang].msgLoginSuccess, true);
+            setTimeout(checkLoginStatus, 800);
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById("regName").value;
+            const email = document.getElementById("regEmail").value;
+            const user = { name: name, email: email };
+            localStorage.setItem("cashmere_user", JSON.stringify(user));
+            showAlert(texts[currentLang].msgRegisterSuccess, true);
+            setTimeout(checkLoginStatus, 900);
+        }
+
+        function checkLoginStatus() {
+            const savedUser = localStorage.getItem("cashmere_user");
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
+                document.getElementById("authTabs").style.display = "none";
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("registerForm").style.display = "none";
+                document.getElementById("profileBox").style.display = "block";
+                document.getElementById("userDisplayName").textContent = (texts[currentLang].welcomeBack) + user.name;
+                document.getElementById("userDisplayEmail").textContent = user.email;
+            } else {
+                document.getElementById("authTabs").style.display = "flex";
+                document.getElementById("profileBox").style.display = "none";
+                switchTab('login');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem("cashmere_user");
+            showAlert(texts[currentLang].msgLoggedOut, true);
+            setTimeout(checkLoginStatus, 700);
+        }
+
+        // التهيئة عند فتح الصفحة
+        applyLang();
+        checkLoginStatus();
+    </script>
+</body>
+</html>

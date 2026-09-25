@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كشمير & صوف | CASHMERE - Winter Luxury Collection</title>
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-secondary: #F3EFEA;
+            --bg-accent: #EAE3D9;
+            --primary: #947150;
+            --primary-dark: #6D5135;
+            --primary-light: #CBB49E;
+            --text-dark: #27221E;
+            --text-muted: #6E6760;
+            --text-light: #9B948C;
+            --border-color: #E8E2D9;
+            --accent-red: #D9534F;
+            --accent-green: #3F8A65;
+            --shadow-sm: 0 2px 8px rgba(39, 34, 30, 0.04);
+            --shadow-md: 0 8px 24px rgba(39, 34, 30, 0.08);
+            --shadow-lg: 0 16px 36px rgba(39, 34, 30, 0.12);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --transition: all 0.28s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Cairo", "Tahoma", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 1. الشريط الخدمي العلوي العالمي */
+        .top-utility-bar {
+            background-color: #F1ECE4;
+            border-bottom: 1px solid var(--border-color);
+            padding: 6px 24px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .top-utility-container {
+            max-width: 1350px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .utility-left, .utility-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .utility-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .utility-link:hover { color: var(--primary-dark); }
+
+        .lang-switch-box {
+            display: inline-flex;
+            align-items: center;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2px 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            gap: 2px;
+        }
+        .lang-opt-btn {
+            background: none;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+        .lang-opt-btn:hover {
+            color: var(--primary-dark);
+            background-color: var(--bg-secondary);
+        }
+        .lang-opt-btn.active {
+            background-color: var(--primary-dark);
+            color: #FFFFFF;
+            box-shadow: 0 2px 6px rgba(109, 81, 53, 0.25);
+        }
+        .lang-sep {
+            color: var(--border-color);
+            font-size: 0.8rem;
+            font-weight: 300;
+        }
+
+        /* 2. صف الأقسام الرئيسية */
+        .department-bar {
+            background-color: #FFFFFF;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+        }
+        .department-container {
+            max-width: 1350px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .department-nav {
+            display: flex;
+            gap: 8px;
+        }
+        .dept-btn {
+            background: none;
+            border: none;
+            padding: 14px 22px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dept-btn:hover {
+            color: var(--primary-dark);
+            background-color: var(--bg-secondary);
+        }
+        .dept-btn.active {
+            color: var(--primary-dark);
+            background-color: #FAF6F0;
+        }
+        .dept-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        .dept-badge {
+            font-size: 0.72rem;
+            padding: 2px 7px;
+            border-radius: 12px;
+            background-color: var(--bg-accent);
+            color: var(--primary-dark);
+        }
+        .dept-btn.active .dept-badge {
+            background-color: var(--primary);
+            color: #fff;
+        }
+        .dept-sale-badge {
+            background-color: #E26857;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* 3. شريط الإعلانات الترويجي */
+        .announcement-bar {
+            background-color: var(--primary-dark);
+            color: #FAF8F5;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.84rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+        .announcement-bar .highlight {
+            background-color: rgba(255, 255, 255, 0.18);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* 4. الهيدر والشعار */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .header-container {
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .logo-box {
+            text-decoration: none;
+            display: inline-block;
+        }
+        .brand-name {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+        }
+        .brand-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            display: block;
+        }
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 440px;
+            margin: 0 20px;
+        }
+        .search-input {
+            width: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid transparent;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .search-input:focus {
+            background-color: #fff;
+            border-color: var(--primary-light);
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cart-trigger {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .cart-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* البانر الترحيبي */
+        .hero {
+            background: linear-gradient(135deg, #FBF8F5 0%, #EDE6DC 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 45px 24px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background-color: #FFFFFF;
+            border: 1px solid var(--border-color);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.84rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* أدوات الفلترة */
+        .controls-bar {
+            max-width: 1350px;
+            margin: 24px auto;
+            padding: 0 24px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .category-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .category-btn {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 7px 16px;
+            border-radius: 25px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .category-btn.active {
+            background-color: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+        .sort-select {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* شبكة المنتجات */
+        .products-section {
+            max-width: 1350px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+            gap: 28px;
+        }
+
+        /* كارت المنتج */
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 330px;
+            background: #EDE7DF;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.04);
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            opacity: 0;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .product-card:hover .quick-view-btn {
+            opacity: 1;
+        }
+
+        /* شريط عدد القطع المتوفرة تحت كل صورة */
+        .stock-banner {
+            padding: 8px 14px;
+            background-color: #F8F5F0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+        .stock-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+        .stock-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .dot-green { background-color: var(--accent-green); }
+        .dot-orange { background-color: #D9822B; }
+        .dot-red { background-color: var(--accent-red); }
+
+        .stock-count-highlight {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .product-content {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 10px;
+        }
+        .dept-tag {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        .category-name {
+            font-size: 0.78rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .product-title {
+            font-size: 1.02rem;
+            font-weight: 700;
+            line-height: 1.4;
+            height: 44px;
+            overflow: hidden;
+        }
+
+        .options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 5px;
+        }
+        .swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            outline: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        .swatch.active { outline: 2px solid var(--primary); }
+
+        .size-selector {
+            display: flex;
+            gap: 4px;
+        }
+        .size-btn {
+            background: var(--bg-secondary);
+            border: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .size-btn.active {
+            background-color: var(--primary-dark);
+            color: #fff;
+        }
+
+        .pricing-box {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .current-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+        .old-price {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        /* أدوات الشراء واختيار عدد القطع */
+        .purchase-controls {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            padding: 4px 8px;
+        }
+        .quantity-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+        .quantity-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .qty-btn {
+            background: none;
+            border: none;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .qty-input {
+            width: 34px;
+            height: 28px;
+            border: none;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.88rem;
+            outline: none;
+        }
+        .add-cart-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .add-cart-btn:hover { background-color: var(--primary-dark); }
+
+        /* سلة التسوق الجانبية */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        .cart-overlay.open { opacity: 1; visibility: visible; }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 400px;
+            max-width: 90%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+        }
+        html[dir="ltr"] .cart-drawer {
+            left: auto;
+            right: 0;
+            transform: translateX(100%);
+        }
+        .cart-drawer.open,
+        html[dir="ltr"] .cart-drawer.open {
+            transform: translateX(0) !important;
+        }
+
+        .cart-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cart-items-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .cart-item {
+            display: flex;
+            gap: 14px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-item-img {
+            width: 68px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+        .cart-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-primary);
+        }
+        .checkout-btn {
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            margin-top: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .checkout-btn:hover { opacity: 0.92; }
+
+        /* نافذة النظرة السريعة */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 16px;
+        }
+        .modal-overlay.open { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: #fff;
+            max-width: 780px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+        .modal-gallery { width: 45%; background: var(--bg-secondary); }
+        .modal-gallery img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-details {
+            width: 55%;
+            padding: 28px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+        html[dir="ltr"] .modal-close {
+            left: auto;
+            right: 12px;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            font-size: 0.9rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1100;
+        }
+        html[dir="ltr"] .toast-msg {
+            right: auto;
+            left: 24px;
+        }
+        .toast-msg.show { transform: translateY(0); opacity: 1; }
+
+        @media (max-width: 860px) {
+            .department-nav { overflow-x: auto; white-space: nowrap; width: 100%; }
+            .top-utility-bar { font-size: 0.75rem; }
+            .modal-content { flex-direction: column; }
+            .modal-gallery { width: 100%; height: 260px; }
+            .modal-details { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. الشريط الخدمي العلوي العالمي -->
+    <div class="top-utility-bar">
+        <div class="top-utility-container">
+            <div class="utility-left">
+                <span class="utility-link" id="txtShipping"><span id="lblShip">📍 الشحن إلى:</span> <strong>  مصر/جميع المحافظات (EGP)</strong></span>
+                <span class="utility-link" id="txtSupport">📞 خدمة العملاء: 800-123-WINTER</span>
+            </div>
+            <div class="utility-right">
+                <a href="help.html" class="utility-link" id="linkHelp">المساعدة والدعم</a>
+                <a href="track.html" class="utility-link" id="linkTrack">تتبع الطلبات</a>
+                <a href="account.html" class="utility-link" id="linkAccount">👤 تسجيل الدخول / حسابي</a>
+                
+                <div class="lang-switch-box">
+                    <button class="lang-opt-btn active" id="btnLangAr" onclick="setLanguage('ar')">
+                        <span>🇪🇬 العربية</span>
+                    </button>
+                    <span class="lang-sep">|</span>
+                    <button class="lang-opt-btn" id="btnLangEn" onclick="setLanguage('en')">
+                        <span>🇬🇧 English</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. صف الأقسام الرئيسية -->
+    <div class="department-bar">
+        <div class="department-container">
+            <nav class="department-nav" id="departmentNav">
+                <button class="dept-btn active" data-dept="all">
+                    <span id="tabAll">جميع التشكيلات</span>
+                    <span class="dept-badge">9</span>
+                </button>
+                <button class="dept-btn" data-dept="women">
+                    <span id="tabWomen">👗 ملابس حريمي</span>
+                    <span class="dept-badge" id="tagWomen">نسائي</span>
+                </button>
+                <button class="dept-btn" data-dept="men">
+                    <span id="tabMen">👔 ملابس رجالي</span>
+                    <span class="dept-badge" id="tagMen">رجالي</span>
+                </button>
+                <button class="dept-btn" data-dept="kids">
+                    <span id="tabKids">🧸 ملابس أطفالي</span>
+                    <span class="dept-badge" id="tagKids">أطفال</span>
+                </button>
+                <button class="dept-btn" data-dept="sale">
+                    <span id="tabSale">🏷️ عروض وتخفيضات الشتاء</span>
+                    <span class="dept-sale-badge" id="tagSale">خصم يصل 40%</span>
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 3. شريط إعلاني ترويجي -->
+    <div class="announcement-bar">
+        <span id="announcementText">✨ تشكيلة شتاء 2026 الفاخرة بالألوان الفاتحة والهادئة متوفرة بجميع الأقسام</span>
+        <span class="highlight" id="announcementSub">شحن مجاني لكافة الطلبات فوق 350 ج.م</span>
+    </div>
+
+    <!-- 4. الهيدر والشعار والبحث والسلة -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-box">
+                <span class="brand-name">CASHMERE</span>
+                <span class="brand-sub">Winter Collection 2026</span>
+            </a>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="ابحث في ملابس حريمي، رجالي، أطفالي...">
+            </div>
+
+            <div class="header-actions">
+                <div class="lang-switch-box" id="headerLangSwitch">
+                    <button class="lang-opt-btn active" id="btnHeaderLangAr" onclick="setLanguage('ar')">
+                        <span>العربية</span>
+                    </button>
+                    <span class="lang-sep">|</span>
+                    <button class="lang-opt-btn" id="btnHeaderLangEn" onclick="setLanguage('en')">
+                        <span>English</span>
+                    </button>
+                </div>
+
+                <button class="cart-trigger" id="cartOpenBtn">
+                    <span id="lblCart">حقيبة التسوق</span>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- البانر الترحيبي -->
+    <section class="hero">
+        <span class="hero-badge" id="heroBadge">الأناقة الدافئة لكل أفراد العائلة</span>
+        <h1 class="hero-title" id="heroTitle">مجموعة الشتاء الفاخرة بالألوان الهادئة</h1>
+        <p class="hero-subtitle" id="heroSubtitle">معاطف كشمير، كنزات صوف تريكو، وسترات شتوية أنيقة بألوان البيج والكريمي والعاجي للأقسام الحريمي والرجالي والأطفالي.</p>
+    </section>
+
+    <!-- شريط تصفية الأنواع والترتيب -->
+    <div class="controls-bar">
+        <div class="category-filters" id="subCategoryFilters">
+            <button class="category-btn active" data-sub="all" id="subAll">جميع الأنواع</button>
+            <button class="category-btn" data-sub="coats" id="subCoats">معاطف وبلاطي</button>
+            <button class="category-btn" data-sub="sweaters" id="subSweaters">سويترات وبلوفرات</button>
+            <button class="category-btn" data-sub="cardigans" id="subCardigans">كارديجان وأطقم</button>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:8px;">
+            <label id="lblSort" style="font-size:0.88rem; color:var(--text-muted);">ترتيب حسب:</label>
+            <select id="sortSelect" class="sort-select">
+                <option value="featured" id="optFeatured">المميز لدينا</option>
+                <option value="price-asc" id="optPriceAsc">السعر: من الأقل للأعلى</option>
+                <option value="price-desc" id="optPriceDesc">السعر: من الأعلى للأقل</option>
+                <option value="stock-desc" id="optStockDesc">الأكثر توفراً</option>
+                <option value="stock-asc" id="optStockAsc">أوشك على النفاذ</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- شبكة عرض المنتجات -->
+    <main class="products-section">
+        <div class="products-grid" id="productsGrid"></div>
+    </main>
+
+    <!-- سلة التسوق المنبثقة -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><span id="cartTitleText">حقيبة التسوق</span> (<span id="cartCountTitle">0</span>)</h3>
+            <button style="border:none;background:none;font-size:1.6rem;cursor:pointer;" id="cartCloseBtn">&times;</button>
+        </div>
+        <div class="cart-items-container" id="cartItemsList">
+            <p id="emptyCartText" style="text-align:center;color:var(--text-muted);margin:auto 0;">سلة التسوق فارغة حالياً</p>
+        </div>
+        <div class="cart-footer">
+            <div style="display:flex;justify-content:space-between;font-weight:800;font-size:1.15rem;margin-bottom:12px;">
+                <span id="lblTotal">الإجمالي:</span>
+                <span id="cartTotal">0.00 ج.م</span>
+            </div>
+            <button class="checkout-btn" id="btnCheckout" onclick="goToCheckout()">متابعة إتمام الطلب</button>
+        </div>
+    </div>
+
+    <!-- نافذة النظرة السريعة والتفاصيل -->
+    <div class="modal-overlay" id="quickModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn">&times;</button>
+            <div class="modal-gallery">
+                <img id="modalImg" src="" alt="صورة المنتج">
+            </div>
+            <div class="modal-details">
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <span class="dept-tag" id="modalDept"></span>
+                    <span class="category-name" id="modalCategory"></span>
+                </div>
+                <h2 id="modalTitle" style="font-size: 1.35rem; color:var(--text-dark);"></h2>
+                <div class="pricing-box">
+                    <span class="current-price" id="modalPrice"></span>
+                    <span class="currency" id="modalCurrency">ج.م</span>
+                    <span class="old-price" id="modalOldPrice"></span>
+                </div>
+
+                <div class="stock-banner" style="border-radius: 8px; margin: 4px 0;">
+                    <div class="stock-status">
+                        <span class="stock-dot dot-green" id="modalStockDot"></span>
+                        <span id="modalStockText">متوفر في المخزن</span>
+                    </div>
+                    <span class="stock-count-highlight" id="modalStockCount"></span>
+                </div>
+
+                <p id="modalDesc" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6;"></p>
+
+                <div class="quantity-wrapper" style="padding:8px 12px;">
+                    <span class="quantity-label" id="modalQtyLabel">كمية الشراء المطلوبة:</span>
+                    <div class="quantity-box">
+                        <button class="qty-btn" id="modalQtyMinus">-</button>
+                        <input type="number" class="qty-input" id="modalQtyInput" value="1" min="1">
+                        <button class="qty-btn" id="modalQtyPlus">+</button>
+                    </div>
+                </div>
+
+                <button class="add-cart-btn" id="modalAddToCartBtn" style="padding:13px;font-size:1rem;">إضافة إلى حقيبة التسوق</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-msg" id="toastMsg">تمت الإضافة بنجاح!</div>
+
+    <script>
+        const translations = {
+            ar: {
+                shipTo: "📍 الشحن إلى: ",
+                support: "📞 خدمة العملاء: 800-123-WINTER",
+                help: "المساعدة والدعم",
+                track: "تتبع الطلبات",
+                account: "👤 تسجيل الدخول / حسابي",
+                searchPlaceholder: "ابحث في ملابس حريمي، رجالي، أطفالي...",
+                cartBtn: "حقيبة التسوق",
+                tabAll: "جميع التشكيلات",
+                tabWomen: "👗 ملابس حريمي",
+                tabMen: "👔 ملابس رجالي",
+                tabKids: "🧸 ملابس أطفالي",
+                tabSale: "🏷️ عروض وتخفيضات الشتاء",
+                tagWomen: "نسائي",
+                tagMen: "رجالي",
+                tagKids: "أطفال",
+                tagSale: "خصم يصل 40%",
+                announcement: "✨ تشكيلة شتاء 2026 الفاخرة بالألوان الفاتحة والهادئة متوفرة بجميع الأقسام",
+                announcementSub: "شحن مجاني لكافة الطلبات فوق 350 ج.م",
+                subAll: "جميع الأنواع",
+                subCoats: "معاطف وبلاطي",
+                subSweaters: "سويترات وبلوفرات",
+                subCardigans: "كارديجان وأطقم",
+                lblSort: "ترتيب حسب:",
+                optFeatured: "المميز لدينا",
+                optPriceAsc: "السعر: من الأقل للأعلى",
+                optPriceDesc: "السعر: من الأعلى للأقل",
+                optStockDesc: "الأكثر توفراً",
+                optStockAsc: "أوشك على النفاذ",
+                quickView: "نظرة سريعة وتفاصيل",
+                wantBuy: "تريد شراء كام قطعة:",
+                addToCart: "إضافة للسلة",
+                cartTitle: "حقيبة التسوق",
+                emptyCart: "سلة التسوق فارغة حالياً",
+                total: "الإجمالي:",
+                checkout: "متابعة إتمام الطلب",
+                currency: "ج.م",
+                stockLow: "أوشك على النفاذ!",
+                stockFew: "كمية محدودة",
+                stockIn: "متوفر بالمخزن",
+                remText: "متبقي",
+                pieces: "قطع فقط",
+                availText: "الكمية المتوفرة:",
+                remove: "حذف",
+                modalQtyLabel: "كمية الشراء المطلوبة:",
+                modalAddBtn: "إضافة إلى حقيبة التسوق",
+                emptyCartAlert: "سلة التسوق فارغة! يرجى إضافة منتجات أولاً."
+            },
+            en: {
+                shipTo: "📍 Ship to: ",
+                support: "📞 Support: 800-123-WINTER",
+                help: "Help & FAQ",
+                track: "Track Order",
+                account: "👤 Sign In / Account",
+                searchPlaceholder: "Search Women, Men, Kids winter clothes...",
+                cartBtn: "Shopping Bag",
+                tabAll: "All Collections",
+                tabWomen: "👗 Women",
+                tabMen: "👔 Men",
+                tabKids: "🧸 Kids",
+                tabSale: "🏷️ Winter Sale",
+                tagWomen: "Women",
+                tagMen: "Men",
+                tagKids: "Kids",
+                tagSale: "Up to 40% Off",
+                announcement: "✨ Winter 2026 Luxury Collection in Light & Cozy Warm Tones Now Available",
+                announcementSub: "Free shipping on orders over 350 EGP",
+                subAll: "All Categories",
+                subCoats: "Coats & Jackets",
+                subSweaters: "Sweaters & Knits",
+                subCardigans: "Cardigans & Sets",
+                lblSort: "Sort by:",
+                optFeatured: "Featured",
+                optPriceAsc: "Price: Low to High",
+                optPriceDesc: "Price: High to Low",
+                optStockDesc: "Most in Stock",
+                optStockAsc: "Almost Gone",
+                quickView: "Quick View & Details",
+                wantBuy: "Pieces to buy:",
+                addToCart: "Add to Bag",
+                cartTitle: "Shopping Bag",
+                emptyCart: "Your shopping bag is empty",
+                total: "Total:",
+                checkout: "Proceed to Checkout",
+                currency: "EGP",
+                stockLow: "Almost Sold Out!",
+                stockFew: "Limited Stock",
+                stockIn: "In Stock",
+                remText: "Only",
+                pieces: "pieces left",
+                availText: "Available Stock:",
+                remove: "Remove",
+                modalQtyLabel: "Quantity to buy:",
+                modalAddBtn: "Add to Shopping Bag",
+                emptyCartAlert: "Your shopping bag is empty! Please add items first."
+            }
+        };
+
+        let currentLang = localStorage.getItem("preferred_lang") || "ar";
+
+        // تم تعديل جميع مسارات الصور لتشير إلى مجلد photo/ المحلي
+        const productsData = [
+            // ملابس حريمي
+            {
+                id: 1,
+                dept: "women",
+                deptName_ar: "ملابس حريمي",
+                deptName_en: "Women's Collection",
+                name_ar: "معطف صوف كشمير طويل باللون البيج الهادئ",
+                name_en: "Long Cashmere Wool Coat in Soft Beige",
+                category: "coats",
+                categoryName_ar: "معاطف حريمي",
+                categoryName_en: "Women's Coats",
+                price: 580,
+                oldPrice: 720,
+                stock: 7,
+                img: "photo/معطف صوف كشمير طويل باللون البيج الهادئ.jfif",
+                colors: ["#D8CBBF", "#EDE7E1"],
+                sizes: ["S", "M", "L", "XL"],
+                desc_ar: "معطف نسائي طويل مصنوع من صوف الكشمير الخالص 100% بتصميم عصري وأكتاف مريحة مع حزام خصر أنيق.",
+                desc_en: "Luxury women's full-length coat crafted from 100% pure cashmere wool with modern tailoring and an elegant belt."
+            },
+            {
+                id: 2,
+                dept: "women",
+                deptName_ar: "ملابس حريمي",
+                deptName_en: "Women's Collection",
+                name_ar: "كنزة صوفية تريكو فضفاضة بلون الأوف وايت",
+                name_en: "Oversized Knit Wool Sweater in Off-White",
+                category: "sweaters",
+                categoryName_ar: "سويتر صوف حريمي",
+                categoryName_en: "Women's Sweaters",
+                price: 240,
+                oldPrice: 290,
+                stock: 14,
+                img: "photo/كنزة صوفية تريكو فضفاضة بلون الأوف وايت.jfif",
+                colors: ["#F6F4F0", "#E3DAC9"],
+                sizes: ["S", "M", "L"],
+                desc_ar: "كنزة محبوكة بعناية من خيوط الصوف الناعمة بتصميم ياقة مرتفعة دافئة وأكمام واسعة أنيقة، ملائمة للإطلالات اليومية والمكتبية.",
+                desc_en: "Soft chunky knit sweater featuring a cozy mock neckline and relaxed silhouette, perfect for cozy winter days."
+            },
+            {
+                id: 3,
+                dept: "women",
+                deptName_ar: "ملابس حريمي",
+                deptName_en: "Women's Collection",
+                name_ar: "كارديجان شتوي طويل مفتوح بلون الرمال الناعمة",
+                name_en: "Open-Front Long Winter Cardigan in Soft Sand",
+                category: "cardigans",
+                categoryName_ar: "كارديجان حريمي",
+                categoryName_en: "Women's Cardigans",
+                price: 310,
+                oldPrice: 380,
+                stock: 4,
+                img: "photo/كارديجان شتوي طويل مفتوح بلون الرمال الناعمة.jfif",
+                colors: ["#EADCC9", "#F5EFE6"],
+                sizes: ["M", "L", "XL"],
+                desc_ar: "كارديجان شتوي انسيابي مع جيوب جانبية دافئة، نسيج ناعم لا يسبب حساسية ويوفر دفئاً خفيفاً مريحاً طوال اليوم.",
+                desc_en: "Flowing warm winter cardigan with deep side pockets, ultra-soft hypoallergenic yarn for everyday warmth."
+            },
+
+            // ملابس رجالي
+            {
+                id: 4,
+                dept: "men",
+                deptName_ar: "ملابس رجالي",
+                deptName_en: "Men's Collection",
+                name_ar: "بالطو صوف إيطالي كلاسيكي بلون الجملي ",
+                name_en: "Classic Italian Wool Overcoat in Light Camel",
+                category: "coats",
+                categoryName_ar: "معاطف رجالي",
+                categoryName_en: "Men's Coats",
+                price: 690,
+                oldPrice: 850,
+                stock: 5,
+                img: "photo/بالطو صوف إيطالي كلاسيكي بلون الجملي الفاتح.jfif",
+                colors: ["#CBB49E", "#D5C8B8"],
+                sizes: ["M", "L", "XL", "XXL"],
+                desc_ar: "بالطو صوف رجالي إيطالي بقصة أنيقة وياقة كلاسيكية عريضة، لون الجملي الفاتح يمنحك هيبة وجاذبية شتوية فريدة.",
+                desc_en: "Sophisticated men's Italian wool tailored overcoat in rich light camel, offering timeless winter elegance."
+            },
+            {
+                id: 5,
+                dept: "men",
+                deptName_ar: "ملابس رجالي",
+                deptName_en: "Men's Collection",
+                name_ar: "بلوفر صوف ميرينو رجالي ناعم بلون الكريم الهادئ",
+                name_en: "Men's Fine Merino Wool Pullover in Calm Cream",
+                category: "sweaters",
+                categoryName_ar: "بلوفرات رجالي",
+                categoryName_en: "Men's Pullovers",
+                price: 260,
+                oldPrice: 320,
+                stock: 12,
+                img: "photo/بلوفر صوف ميرينو رجالي ناعم بلون الكريم الهادئ.jfif",
+                colors: ["#F2ECE1", "#E6DFC8"],
+                sizes: ["S", "M", "L", "XL"],
+                desc_ar: "بلوفر رجالي فائق النعومة من صوف الميرينو الطبيعي بياقة دائرية كلاسيكية ملائم تحت الجواكت والبلاطي الشتوية.",
+                desc_en: "Ultra-fine natural merino wool crewneck sweater, lightweight yet exceptionally warm under winter blazers."
+            },
+            {
+                id: 6,
+                dept: "men",
+                deptName_ar: "ملابس رجالي",
+                deptName_en: "Men's Collection",
+                name_ar: "جاكيت بامب خفيف ودافئ بلون البيج الرملي",
+                name_en: "Lightweight Quilted Puffer Jacket in Sand Beige",
+                category: "coats",
+                categoryName_ar: "سترات رجالي",
+                categoryName_en: "Men's Jackets",
+                price: 380,
+                oldPrice: 460,
+                stock: 8,
+                img: "photo/جاكيت بامب خفيف ودافئ بلون البيج الرملي.jfif",
+                colors: ["#D8CFBE", "#C2B6A3"],
+                sizes: ["M", "L", "XL"],
+                desc_ar: "جاكيت شتوي رجالي عازل للرياح والبرودة، مبطن بريش ناعم خفيف الوزن يمنح حرية كاملة للحركة.",
+                desc_en: "Windproof and water-resistant lightweight padded jacket providing optimal insulation and mobility."
+            },
+
+            // ملابس أطفالي
+            {
+                id: 7,
+                dept: "kids",
+                deptName_ar: "ملابس أطفالي",
+                deptName_en: "Kids' Collection",
+                name_ar: "طقم شتوي صوف ناعم للأطفال بلون الحليب والعسل",
+                name_en: "Kids' Soft Knit Wool 2-Piece Set in Honey Milk",
+                category: "cardigans",
+                categoryName_ar: "أطقم أطفال",
+                categoryName_en: "Kids' Sets",
+                price: 180,
+                oldPrice: 230,
+                stock: 10,
+                img: "photo/طقم شتوي صوف ناعم للأطفال بلون الحليب والعسل.jfif",
+                colors: ["#FDF8EE", "#EAD8C3"],
+                sizes: ["2-3Y", "4-5Y", "6-7Y"],
+                desc_ar: "طقم قطعتين من الصوف العضوي فائق النعومة لجلد الأطفال الحساس، يوفر أقصى درجات الدفء والراحة أثناء اللعب.",
+                desc_en: "Two-piece organic soft knit ensemble designed for delicate child skin, ensuring cozy warmth during playtime."
+            },
+            {
+                id: 8,
+                dept: "kids",
+                deptName_ar: "ملابس أطفالي",
+                deptName_en: "Kids' Collection",
+                name_ar: "جاكيت فرو تيدي شتوي للأطفال بلون الأوف وايت",
+                name_en: "Kids' Cozy Teddy Fleece Winter Jacket in Off-White",
+                category: "coats",
+                categoryName_ar: "معاطف أطفال",
+                categoryName_en: "Kids' Coats",
+                price: 210,
+                oldPrice: 270,
+                stock: 3,             
+                img: "photo/جاكيت فرو تيدي شتوي للأطفال بلون الأوف وايت.jfif",
+                colors: ["#FAF0E6", "#E8D8C8"],
+                sizes: ["3-4Y", "5-6Y", "7-8Y"],
+                desc_ar: "جاكيت أطفال تيدي ناعم مثل السحاب مع قبعة أذن دب لطيفة وسحاب أمامي عملي سهل الاستخدام.",
+                desc_en: "Fluffy cloud-like teddy jacket with an adorable hooded bear ear detail and easy front zipper."
+            },
+            {
+                id: 9,
+                dept: "kids",
+                deptName_ar: "ملابس أطفالي",
+                deptName_en: "Kids' Collection",
+                name_ar: "كنزة شتوية تريكو بنقشات ندفات الثلج بلون العاج",
+                name_en: "Kids' Snowflake Pattern Knit Jumper in Ivory",
+                category: "sweaters",
+                categoryName_ar: "سويتر أطفال",
+                categoryName_en: "Kids' Sweaters",
+                price: 145,
+                oldPrice: 185,
+                stock: 15,
+                img: "photo/كنزة شتوية تريكو نقشات ندفات الثلج بلون العاج.jfif",
+                colors: ["#FFFDF9", "#EFE2D3"],
+                sizes: ["4-5Y", "6-8Y", "8-10Y"],
+                desc_ar: "كنزة شتوية محبوكة بتطريزات ناعمة مستوحاة من أجواء الثلج، خفيفة على الطفل وتضمن دفئاً مستمراً.",
+                desc_en: "Classic winter snowflake motif jumper, lightweight, itch-free, and snug for cold weather."
+            }
+        ];
+
+        let activeDept = "all";
+        let activeSubCategory = "all";
+        let activeSort = "featured";
+        let searchKeyword = "";
+        
+        let cart = JSON.parse(localStorage.getItem("winter_cart") || "[]");
+
+        const productSelections = {};
+        productsData.forEach(p => {
+            productSelections[p.id] = { qty: 1, size: p.sizes[0], colorIndex: 0 };
+        });
+
+        window.goToCheckout = function() {
+            if (cart.length === 0) {
+                showToast(translations[currentLang].emptyCartAlert);
+                return;
+            }
+            localStorage.setItem("winter_cart", JSON.stringify(cart));
+            localStorage.setItem("preferred_lang", currentLang);
+            window.location.href = "checkout.html";
+        };
+
+        window.setLanguage = function(lang) {
+            currentLang = lang;
+            localStorage.setItem("preferred_lang", currentLang);
+            applyLanguage();
+        };
+
+        function applyLanguage() {
+            const root = document.getElementById("htmlRoot");
+            const t = translations[currentLang];
+
+            root.setAttribute("lang", currentLang);
+            root.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            const btnAr = document.getElementById("btnLangAr");
+            const btnEn = document.getElementById("btnLangEn");
+            if (btnAr && btnEn) {
+                if (currentLang === "ar") {
+                    btnAr.classList.add("active");
+                    btnEn.classList.remove("active");
+                } else {
+                    btnEn.classList.add("active");
+                    btnAr.classList.remove("active");
+                }
+            }
+
+            const btnHAr = document.getElementById("btnHeaderLangAr");
+            const btnHEn = document.getElementById("btnHeaderLangEn");
+            if (btnHAr && btnHEn) {
+                if (currentLang === "ar") {
+                    btnHAr.classList.add("active");
+                    btnHEn.classList.remove("active");
+                } else {
+                    btnHEn.classList.add("active");
+                    btnHAr.classList.remove("active");
+                }
+            }
+
+            document.getElementById("lblShip").textContent = t.shipTo;
+            document.getElementById("txtSupport").textContent = t.support;
+            document.getElementById("linkHelp").textContent = t.help;
+            document.getElementById("linkTrack").textContent = t.track;
+            document.getElementById("linkAccount").textContent = t.account;
+
+            document.getElementById("tabAll").textContent = t.tabAll;
+            document.getElementById("tabWomen").textContent = t.tabWomen;
+            document.getElementById("tabMen").textContent = t.tabMen;
+            document.getElementById("tabKids").textContent = t.tabKids;
+            document.getElementById("tabSale").textContent = t.tabSale;
+            document.getElementById("tagWomen").textContent = t.tagWomen;
+            document.getElementById("tagMen").textContent = t.tagMen;
+            document.getElementById("tagKids").textContent = t.tagKids;
+            document.getElementById("tagSale").textContent = t.tagSale;
+
+            document.getElementById("announcementText").textContent = t.announcement;
+            document.getElementById("announcementSub").textContent = t.announcementSub;
+            document.getElementById("searchInput").placeholder = t.searchPlaceholder;
+            document.getElementById("lblCart").textContent = t.cartBtn;
+
+            document.getElementById("subAll").textContent = t.subAll;
+            document.getElementById("subCoats").textContent = t.subCoats;
+            document.getElementById("subSweaters").textContent = t.subSweaters;
+            document.getElementById("subCardigans").textContent = t.subCardigans;
+            document.getElementById("lblSort").textContent = t.lblSort;
+            document.getElementById("optFeatured").textContent = t.optFeatured;
+            document.getElementById("optPriceAsc").textContent = t.optPriceAsc;
+            document.getElementById("optPriceDesc").textContent = t.optPriceDesc;
+            document.getElementById("optStockDesc").textContent = t.optStockDesc;
+            document.getElementById("optStockAsc").textContent = t.optStockAsc;
+
+            document.getElementById("cartTitleText").textContent = t.cartTitle;
+            document.getElementById("emptyCartText").textContent = t.emptyCart;
+            document.getElementById("lblTotal").textContent = t.total;
+            document.getElementById("btnCheckout").textContent = t.checkout;
+            document.getElementById("modalCurrency").textContent = t.currency;
+            document.getElementById("modalQtyLabel").textContent = t.modalQtyLabel;
+            document.getElementById("modalAddToCartBtn").textContent = t.modalAddBtn;
+
+            const currentUser = localStorage.getItem("cashmere_user");
+            if (currentUser) {
+                const userData = JSON.parse(currentUser);
+                document.getElementById("linkAccount").textContent = `👤 ${userData.name}`;
+            }
+
+            updateHeroForDept(activeDept);
+            renderProducts();
+            updateCart();
+        }
+
+        function updateHeroForDept(dept) {
+            const isAr = currentLang === "ar";
+            const heroBadge = document.getElementById("heroBadge");
+            const heroTitle = document.getElementById("heroTitle");
+            const heroSubtitle = document.getElementById("heroSubtitle");
+
+            if (dept === "women") {
+                heroBadge.textContent = isAr ? "المجموعة النسائية الشتوية" : "Women's Winter Collection";
+                heroTitle.textContent = isAr ? "أزياء شتوية حريمي راقية بألوان فاتحة" : "Elegant Women's Winter Wear in Soft Warm Tones";
+                heroSubtitle.textContent = isAr ? "تشكيلة من معاطف الكشمير الطويلة، الكنزات الصوفية الأنيقة، والكارديجان الناعم بالبيج والأوف وايت."
+                                             : "Full-length cashmere coats, fine-knit chunky sweaters, and flowing cardigans in creamy beige.";
+            } else if (dept === "men") {
+                heroBadge.textContent = isAr ? "المجموعة الرجالية الشتوية" : "Men's Winter Collection";
+                heroTitle.textContent = isAr ? "ملابس شتوية رجالي فخمة ودافئة" : "Refined Men's Cozy Winter Apparel";
+                heroSubtitle.textContent = isAr ? "بلاطي إيطالية صوف بلون الجملي الفاتح، بلوفرات صوف ميرينو هادئة، وسترات شتوية دافئة."
+                                             : "Italian tailored camel overcoats, breathable merino wool pullovers, and lightweight quilted jackets.";
+            } else if (dept === "kids") {
+                heroBadge.textContent = isAr ? "المجموعة الشتوية للأطفال" : "Kids' Cozy Winter Line";
+                heroTitle.textContent = isAr ? "ملابس أطفالي شتوية فائقة النعومة والدفء" : "Ultra-Soft & Warm Winter Outfits for Kids";
+                heroSubtitle.textContent = isAr ? "أطقم تريكو وجواكت تيدي ناعمة بألوان العاج والبيج الفاتح المناسبة لراحة وأناقة طفلك."
+                                             : "Organic knit sets and cozy teddy fleece jackets in ivory and oat hues for all-day comfort.";
+            } else if (dept === "sale") {
+                heroBadge.textContent = isAr ? "عروض التخفيضات الكبرى" : "Major Winter Clearance";
+                heroTitle.textContent = isAr ? "تخفيضات الشتاء الحصرية على جميع الأقسام" : "Exclusive Winter Discounts Across All Departments";
+                heroSubtitle.textContent = isAr ? "خصومات حصرية تصل حتى 40% على قطع مختارة من الملابس الحريمي، الرجالي، والأطفالي."
+                                             : "Limited-time offers with savings up to 40% on selected seasonal garments.";
+            } else {
+                heroBadge.textContent = isAr ? "الأناقة الدافئة لكل أفراد العائلة" : "Cozy Warmth for the Whole Family";
+                heroTitle.textContent = isAr ? "مجموعة الشتاء الفاخرة بالألوان الهادئة" : "Luxury Winter Wardrobe in Subtle Tones";
+                heroSubtitle.textContent = isAr ? "معاطف كشمير، كنزات صوف تريكو، وسترات شتوية أنيقة بألوان البيج والكريمي والعاجي لجميع الأقسام."
+                                             : "Pure cashmere coats, wool knits, and premium winter pieces in warm cream, sand, and ivory.";
+            }
+        }
+
+        function getStockBadge(stock) {
+            const t = translations[currentLang];
+            if (stock <= 5) {
+                return { dotClass: 'dot-red', label: t.stockLow, text: `${t.remText} ${stock} ${t.pieces}` };
+            } else if (stock <= 10) {
+                return { dotClass: 'dot-orange', label: t.stockFew, text: `${t.remText} ${stock} ${t.pieces}` };
+            } else {
+                return { dotClass: 'dot-green', label: t.stockIn, text: `${t.availText} ${stock}` };
+            }
+        }
+
+        function renderProducts() {
+            const t = translations[currentLang];
+            const isAr = currentLang === "ar";
+
+            let filtered = productsData.filter(product => {
+                let matchDept = true;
+                if (activeDept === "women") matchDept = product.dept === "women";
+                else if (activeDept === "men") matchDept = product.dept === "men";
+                else if (activeDept === "kids") matchDept = product.dept === "kids";
+                else if (activeDept === "sale") matchDept = product.oldPrice && product.oldPrice > product.price;
+
+                let matchSub = activeSubCategory === "all" || product.category === activeSubCategory;
+
+                const prodName = isAr ? product.name_ar : product.name_en;
+                const matchSearch = prodName.toLowerCase().includes(searchKeyword.toLowerCase());
+
+                return matchDept && matchSub && matchSearch;
+            });
+
+            if (activeSort === "price-asc") filtered.sort((a, b) => a.price - b.price);
+            else if (activeSort === "price-desc") filtered.sort((a, b) => b.price - a.price);
+            else if (activeSort === "stock-asc") filtered.sort((a, b) => a.stock - b.stock);
+            else if (activeSort === "stock-desc") filtered.sort((a, b) => b.stock - a.stock);
+
+            const grid = document.getElementById("productsGrid");
+            grid.innerHTML = filtered.map(product => {
+                const stockInfo = getStockBadge(product.stock);
+                const selection = productSelections[product.id];
+                const prodName = isAr ? product.name_ar : product.name_en;
+                const deptTitle = isAr ? product.deptName_ar : product.deptName_en;
+                const catTitle = isAr ? product.categoryName_ar : product.categoryName_en;
+
+                return `
+                <div class="product-card">
+                    <div class="product-img-wrapper">
+                        <img class="product-img" src="${product.img}" alt="${prodName}" onerror="this.onerror=null; this.src='https://placehold.co/600x800/EDE7DF/6D5135?text=CASHMERE';">
+                        <button class="quick-view-btn" onclick="openQuickModal(${product.id})">${t.quickView}</button>
+                    </div>
+
+                    <div class="stock-banner">
+                        <div class="stock-status">
+                            <span class="stock-dot ${stockInfo.dotClass}"></span>
+                            <span>${stockInfo.label}</span>
+                        </div>
+                        <span class="stock-count-highlight">${stockInfo.text}</span>
+                    </div>
+
+                    <div class="product-content">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span class="dept-tag">${deptTitle}</span>
+                            <span class="category-name">${catTitle}</span>
+                        </div>
+
+                        <h3 class="product-title">${prodName}</h3>
+
+                        <div class="options-row">
+                            <div class="color-swatches">
+                                ${product.colors.map((c, idx) => `
+                                    <div class="swatch ${selection.colorIndex === idx ? 'active' : ''}" 
+                                         style="background-color: ${c};" 
+                                         onclick="selectColor(${product.id}, ${idx})"></div>
+                                `).join('')}
+                            </div>
+                            <div class="size-selector">
+                                ${product.sizes.map(size => `
+                                    <button class="size-btn ${selection.size === size ? 'active' : ''}" 
+                                            onclick="selectSize(${product.id}, '${size}')">${size}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="pricing-box">
+                            <span class="current-price">${product.price} ${t.currency}</span>
+                            ${product.oldPrice ? `<span class="old-price">${product.oldPrice} ${t.currency}</span>` : ''}
+                        </div>
+
+                        <div class="purchase-controls">
+                            <div class="quantity-wrapper">
+                                <span class="quantity-label">${t.wantBuy}</span>
+                                <div class="quantity-box">
+                                    <button class="qty-btn" onclick="changeQty(${product.id}, -1)">-</button>
+                                    <input type="number" class="qty-input" id="qty-input-${product.id}" 
+                                           value="${selection.qty}" min="1" max="${product.stock}" 
+                                           onchange="setQty(${product.id}, this.value)">
+                                    <button class="qty-btn" onclick="changeQty(${product.id}, 1)">+</button>
+                                </div>
+                            </div>
+
+                            <button class="add-cart-btn" onclick="addToCart(${product.id})">${t.addToCart}</button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        window.selectColor = function(id, idx) {
+            productSelections[id].colorIndex = idx;
+            renderProducts();
+        };
+
+        window.selectSize = function(id, size) {
+            productSelections[id].size = size;
+            renderProducts();
+        };
+
+        window.changeQty = function(id, delta) {
+            const product = productsData.find(p => p.id === id);
+            let next = productSelections[id].qty + delta;
+            if (next < 1) next = 1;
+            if (next > product.stock) {
+                showToast(currentLang === 'ar' ? `الحد الأقصى هو ${product.stock} قطع` : `Max is ${product.stock} pcs`);
+                next = product.stock;
+            }
+            productSelections[id].qty = next;
+            document.getElementById(`qty-input-${id}`).value = next;
+        };
+
+        window.setQty = function(id, val) {
+            const product = productsData.find(p => p.id === id);
+            let num = parseInt(val, 10);
+            if (isNaN(num) || num < 1) num = 1;
+            if (num > product.stock) {
+                showToast(currentLang === 'ar' ? `المتوفر ${product.stock} قطع فقط` : `Only ${product.stock} pcs available`);
+                num = product.stock;
+            }
+            productSelections[id].qty = num;
+            document.getElementById(`qty-input-${id}`).value = num;
+        };
+
+        window.addToCart = function(id) {
+            const product = productsData.find(p => p.id === id);
+            const selection = productSelections[id];
+            const existing = cart.find(i => i.id === id && i.size === selection.size);
+
+            if (existing) {
+                existing.qty = Math.min(product.stock, existing.qty + selection.qty);
+            } else {
+                cart.push({
+                    id: product.id,
+                    name_ar: product.name_ar,
+                    name_en: product.name_en,
+                    price: product.price,
+                    img: product.img,
+                    stock: product.stock,
+                    qty: selection.qty,
+                    size: selection.size,
+                    deptName_ar: product.deptName_ar,
+                    deptName_en: product.deptName_en
+                });
+            }
+
+            localStorage.setItem("winter_cart", JSON.stringify(cart));
+            showToast(currentLang === 'ar' ? `تمت إضافة ${selection.qty} قطعة إلى سلة المشتريات!` : `Added ${selection.qty} item(s) to bag!`);
+            updateCart();
+        };
+
+        function updateCart() {
+            const t = translations[currentLang];
+            const isAr = currentLang === "ar";
+            const totalCount = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById("cartBadge").textContent = totalCount;
+            document.getElementById("cartCountTitle").textContent = totalCount;
+
+            const cartItemsList = document.getElementById("cartItemsList");
+            const cartTotal = document.getElementById("cartTotal");
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `<p style="text-align:center;color:var(--text-muted);margin:auto 0;">${t.emptyCart}</p>`;
+                cartTotal.textContent = `0.00 ${t.currency}`;
+                localStorage.setItem("winter_cart", JSON.stringify([]));
+                return;
+            }
+
+            let sumPrice = 0;
+            cartItemsList.innerHTML = cart.map((item, idx) => {
+                const totalItem = item.price * item.qty;
+                sumPrice += totalItem;
+                const name = isAr ? item.name_ar : item.name_en;
+                const dept = isAr ? item.deptName_ar : item.deptName_en;
+                return `
+                <div class="cart-item">
+                    <img src="${item.img}" class="cart-item-img">
+                    <div style="flex-grow:1;">
+                        <h4 style="font-size:0.9rem;">${name}</h4>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">${dept} | ${item.size} | ${item.qty} pcs</div>
+                        <div style="font-weight:700; margin-top:4px;">${totalItem} ${t.currency}</div>
+                        <button onclick="cart.splice(${idx},1);updateCart();" style="border:none;background:none;color:var(--accent-red);cursor:pointer;font-size:0.8rem;text-decoration:underline;">${t.remove}</button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            cartTotal.textContent = `${sumPrice.toFixed(2)} ${t.currency}`;
+            localStorage.setItem("winter_cart", JSON.stringify(cart));
+        }
+
+        document.getElementById("departmentNav").addEventListener("click", (e) => {
+            const btn = e.target.closest(".dept-btn");
+            if (!btn) return;
+            document.querySelectorAll(".dept-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeDept = btn.getAttribute("data-dept");
+            updateHeroForDept(activeDept);
+            renderProducts();
+        });
+
+        document.getElementById("subCategoryFilters").addEventListener("click", (e) => {
+            if (e.target.classList.contains("category-btn")) {
+                document.querySelectorAll(".category-btn").forEach(b => b.classList.remove("active"));
+                e.target.classList.add("active");
+                activeSubCategory = e.target.getAttribute("data-sub");
+                renderProducts();
+            }
+        });
+
+        document.getElementById("sortSelect").addEventListener("change", (e) => {
+            activeSort = e.target.value;
+            renderProducts();
+        });
+
+        document.getElementById("searchInput").addEventListener("input", (e) => {
+            searchKeyword = e.target.value.trim();
+            renderProducts();
+        });
+
+        document.getElementById("cartOpenBtn").onclick = () => {
+            document.getElementById("cartDrawer").classList.add("open");
+            document.getElementById("cartOverlay").classList.add("open");
+        };
+        const closeCart = () => {
+            document.getElementById("cartDrawer").classList.remove("open");
+            document.getElementById("cartOverlay").classList.remove("open");
+        };
+        document.getElementById("cartCloseBtn").onclick = closeCart;
+        document.getElementById("cartOverlay").onclick = closeCart;
+
+        let currentModalId = 1;
+        window.openQuickModal = function(id) {
+            const product = productsData.find(p => p.id === id);
+            const isAr = currentLang === "ar";
+            currentModalId = id;
+            document.getElementById("modalImg").src = product.img;
+            document.getElementById("modalDept").textContent = isAr ? product.deptName_ar : product.deptName_en;
+            document.getElementById("modalCategory").textContent = isAr ? product.categoryName_ar : product.categoryName_en;
+            document.getElementById("modalTitle").textContent = isAr ? product.name_ar : product.name_en;
+            document.getElementById("modalPrice").textContent = product.price;
+            document.getElementById("modalOldPrice").textContent = product.oldPrice ? `${product.oldPrice} ${translations[currentLang].currency}` : "";
+            document.getElementById("modalDesc").textContent = isAr ? product.desc_ar : product.desc_en;
+
+            const stockInfo = getStockBadge(product.stock);
+            document.getElementById("modalStockDot").className = `stock-dot ${stockInfo.dotClass}`;
+            document.getElementById("modalStockText").textContent = stockInfo.label;
+            document.getElementById("modalStockCount").textContent = stockInfo.text;
+
+            document.getElementById("modalQtyInput").value = 1;
+            document.getElementById("quickModal").classList.add("open");
+        };
+
+        document.getElementById("modalCloseBtn").onclick = () => {
+            document.getElementById("quickModal").classList.remove("open");
+        };
+
+        document.getElementById("modalQtyMinus").onclick = () => {
+            const input = document.getElementById("modalQtyInput");
+            if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+        };
+        document.getElementById("modalQtyPlus").onclick = () => {
+            const product = productsData.find(p => p.id === currentModalId);
+            const input = document.getElementById("modalQtyInput");
+            if (parseInt(input.value) < product.stock) {
+                input.value = parseInt(input.value) + 1;
+            } else {
+                showToast(currentLang === 'ar' ? `الحد الأقصى هو ${product.stock}` : `Max is ${product.stock}`);
+            }
+        };
+
+        document.getElementById("modalAddToCartBtn").onclick = () => {
+            const qty = parseInt(document.getElementById("modalQtyInput").value, 10);
+            productSelections[currentModalId].qty = qty;
+            addToCart(currentModalId);
+            document.getElementById("quickModal").classList.remove("open");
+        };
+
+        function showToast(msg) {
+            const toast = document.getElementById("toastMsg");
+            toast.textContent = msg;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 2600);
+        }
+
+        applyLanguage();
+    </script>
+</body>
+</html>
