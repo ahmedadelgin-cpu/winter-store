@@ -1,139 +1,630 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="checkoutRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة استقبال الطلبات | CASHMERE Admin</title>
+    <title>إتمام الطلب والدفع الآمن | CASHMERE Checkout</title>
     <style>
         :root {
             --bg-primary: #FAF8F5;
             --bg-card: #FFFFFF;
             --bg-secondary: #F3EFEA;
+            --bg-accent: #EAE3D9;
             --primary: #947150;
             --primary-dark: #6D5135;
+            --primary-light: #CBB49E;
             --text-dark: #27221E;
             --text-muted: #6E6760;
             --border-color: #E8E2D9;
             --accent-green: #3F8A65;
-            --accent-red: #D9534F;
+            --radius-md: 12px;
+            --shadow-sm: 0 2px 8px rgba(39, 34, 30, 0.05);
+            --transition: all 0.25s ease;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Cairo", Tahoma, sans-serif; }
-        body { background: var(--bg-primary); color: var(--text-dark); padding: 24px; line-height: 1.6; }
-        .container { max-width: 1000px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-        .btn { padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; text-decoration: none; border: none; font-size: 0.88rem; }
-        .btn-refresh { background: var(--primary); color: #fff; }
-        .order-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 22px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .order-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--border-color); padding-bottom: 12px; margin-bottom: 14px; }
-        .order-id { font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); }
-        .order-status { background: #EDF7F2; color: var(--accent-green); padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; background: var(--bg-secondary); padding: 14px; border-radius: 8px; margin-bottom: 16px; font-size: 0.9rem; }
-        .items-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 0.9rem; }
-        .items-table th, .items-table td { padding: 10px; border-bottom: 1px solid var(--border-color); text-align: right; }
-        .items-table th { background: #FAF5EE; color: var(--primary-dark); }
-        .total-box { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); padding-top: 10px; border-top: 2px dashed var(--border-color); }
-        .btn-delete { background: var(--accent-red); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Cairo", Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* شريط علوي */
+        .checkout-header {
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        .header-actions-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .back-to-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .back-to-store-btn:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            background: #EDF7F2;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        /* الحاوية الرئيسية */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 32px;
+        }
+
+        .checkout-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 22px;
+            box-shadow: var(--shadow-sm);
+        }
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-dark);
+        }
+
+        /* شبكة الحقول */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .form-group.full {
+            grid-column: span 2;
+        }
+        .form-label {
+            font-size: 0.86rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .form-input {
+            padding: 11px 14px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .form-input:focus {
+            border-color: var(--primary);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(148, 113, 80, 0.12);
+        }
+
+        /* خيارات الدفع */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .payment-option {
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .payment-option:hover {
+            border-color: var(--primary-light);
+            background-color: var(--bg-secondary);
+        }
+        .payment-option.active {
+            border-color: var(--primary);
+            background-color: #FAF5EE;
+        }
+        .option-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .option-radio {
+            accent-color: var(--primary-dark);
+            width: 18px;
+            height: 18px;
+        }
+        .payment-logos {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        /* حقول البطاقة البنكية */
+        .card-details-box {
+            background-color: var(--bg-primary);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* ملخص الطلب */
+        .order-summary-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            position: sticky;
+            top: 85px;
+            box-shadow: var(--shadow-sm);
+        }
+        .order-items {
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .order-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .order-item-img {
+            width: 55px;
+            height: 65px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: var(--bg-secondary);
+        }
+        .order-item-info {
+            flex-grow: 1;
+        }
+        .order-item-name {
+            font-size: 0.86rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .order-item-meta {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+        }
+        .order-item-price {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+        }
+
+        .coupon-box {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0;
+        }
+        .coupon-btn {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 0 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .coupon-btn:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .summary-row.total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .pay-now-btn {
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .pay-now-btn:hover {
+            background-color: #553D26;
+            box-shadow: 0 4px 16px rgba(109, 81, 53, 0.3);
+        }
+
+        @media (max-width: 860px) {
+            .checkout-container { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <div>
-                <h2>📦 لوحة استقبال الطلبات (أونلاين)</h2>
-                <p style="color:var(--text-muted); font-size:0.9rem;">يتم تحديث الطلبات القادمة من المتجر مباشرة من السحابة</p>
+    <header class="checkout-header">
+        <div class="header-content">
+            <a href="index.html" class="brand-logo">CASHMERE</a>
+            
+            <div class="header-actions-box">
+                <!-- زر الرجوع للمتجر للتسوق -->
+                <a href="index.html" class="back-to-store-btn" id="btnBackToStore">
+                    <span>← العودة لمتجر الملابس الشتوية</span>
+                </a>
+                
+                <div class="security-badge" id="badgeSecure">
+                    🔒 اتصال مشفر وآمن 256-bit SSL
+                </div>
             </div>
-            <button onclick="fetchOrders()" class="btn btn-refresh">🔄 تحديث الطلبات الآن</button>
         </div>
+    </header>
 
-        <div id="ordersContainer">
-            <p style="text-align:center; padding: 40px; color:#888;">جاري جلب الطلبات من السيرفر...</p>
-        </div>
-    </div>
+    <main class="checkout-container">
+        <!-- 1. بيانات الشحن والدفع -->
+        <div>
+            <!-- بيانات الشحن والتوصيل -->
+            <div class="checkout-card">
+                <h2 class="section-title" id="titleShipping">📦 1. بيانات الشحن والتوصيل</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" id="lblFname">الاسم الأول *</label>
+                        <input type="text" id="inpFname" class="form-input" placeholder="محمد" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="lblLname">اسم العائلة *</label>
+                        <input type="text" id="inpLname" class="form-input" placeholder="أحمد" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="lblPhone">رقم الجوال *</label>
+                        <input type="tel" id="inpPhone" class="form-input" placeholder="05XXXXXXXX / 01XXXXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="lblEmail">البريد الإلكتروني *</label>
+                        <input type="email" id="inpEmail" class="form-input" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="lblCity">المدينة *</label>
+                        <input type="text" id="inpCity" class="form-input" placeholder="الرياض / القاهرة" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" id="lblDistrict">الحي السكني *</label>
+                        <input type="text" id="inpDistrict" class="form-input" placeholder="اسم الحي" required>
+                    </div>
+                    <div class="form-group full">
+                        <label class="form-label" id="lblAddress">العنوان بالتفصيل (اسم الشارع، رقم المبنى)</label>
+                        <input type="text" id="inpAddress" class="form-input" placeholder="تفاصيل إضافية لتسهيل وصول المندوب">
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        // ضع نفس رابط الـ API هنا
-        const ORDERS_API_URL = "https://65ab1234abcd.mockapi.io/orders"; 
-
-        async function fetchOrders() {
-            const container = document.getElementById("ordersContainer");
-            container.innerHTML = "<p style='text-align:center; padding: 30px;'>جاري تحميل أحدث الطلبات...</p>";
-
-            try {
-                const res = await fetch(ORDERS_API_URL);
-                const orders = await res.json();
-
-                if (!orders || orders.length === 0) {
-                    container.innerHTML = "<p style='text-align:center; padding: 50px; color:#888;'>لا توجد أي طلبات مرسلة حتى الآن 📭</p>";
-                    return;
-                }
-
-                // ترتيب الطلبات من الأحدث للأقدم
-                orders.reverse();
-
-                container.innerHTML = orders.map(ord => `
-                    <div class="order-box">
-                        <div class="order-top">
+            <!-- وسيلة الدفع -->
+            <div class="checkout-card">
+                <h2 class="section-title" id="titlePayment">💳 2. اختيار طريقة الدفع الإلكتروني</h2>
+                <div class="payment-options">
+                    
+                    <!-- بطاقة بنكية -->
+                    <label class="payment-option active" id="optCard">
+                        <div class="option-left">
+                            <input type="radio" name="payment" class="option-radio" checked onchange="switchPayment('card')">
                             <div>
-                                <span class="order-id">رقم الطلب: ${ord.orderNumber}</span>
-                                <div style="font-size:0.8rem; color:#888;">📅 التاريخ: ${ord.date}</div>
-                            </div>
-                            <div style="display:flex; align-items:center; gap:10px;">
-                                <span class="order-status">${ord.status}</span>
-                                <button class="btn-delete" onclick="deleteOrder('${ord.id}')">حذف</button>
+                                <strong id="txtCardTitle">بطاقة ائتمان / مدى / فيزا وماستركارد</strong>
+                                <p id="txtCardSub" style="font-size:0.78rem; color:var(--text-muted);">دفع فوري آمن ومحمي</p>
                             </div>
                         </div>
+                        <span class="payment-logos">💳 Visa • Mada • MC</span>
+                    </label>
 
-                        <div class="info-grid">
-                            <div><strong>👤 العميل:</strong> <span>${ord.customerName}</span></div>
-                            <div><strong>📞 الهاتف:</strong> <a href="tel:${ord.phone}" style="color:var(--primary); font-weight:bold;">${ord.phone}</a></div>
-                            <div><strong>📧 البريد:</strong> <span>${ord.email}</span></div>
-                            <div><strong>💳 طريقة الدفع:</strong> <span>${ord.paymentMethod}</span></div>
-                            <div style="grid-column: span 2;"><strong>📍 العنوان:</strong> <span>${ord.address}</span></div>
+                    <!-- تفاصيل البطاقة -->
+                    <div class="card-details-box" id="cardDetailsBox">
+                        <div class="form-group">
+                            <label class="form-label" id="lblCardNum">رقم البطاقة (16 رقم)</label>
+                            <input type="text" class="form-input" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
                         </div>
-
-                        <h4 style="margin-bottom:8px; color:var(--primary-dark);">🛍️ المنتجات المطلوبة:</h4>
-                        <table class="items-table">
-                            <thead>
-                                <tr>
-                                    <th>المنتج</th>
-                                    <th>المقاس</th>
-                                    <th>الكمية</th>
-                                    <th>السعر</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${(ord.items || []).map(i => `
-                                    <tr>
-                                        <td>${i.name_ar || i.name}</td>
-                                        <td>${i.size}</td>
-                                        <td>${i.qty}</td>
-                                        <td>${i.price * i.qty} ج.م</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-
-                        <div class="total-box">
-                            <span>الإجمالي النهائي:</span>
-                            <span>${ord.total}</span>
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+                            <div class="form-group">
+                                <label class="form-label" id="lblCardExp">تاريخ الانتهاء</label>
+                                <input type="text" class="form-input" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" id="lblCardCvv">رمز الأمان (CVV)</label>
+                                <input type="password" class="form-input" placeholder="3 أرقام" maxlength="3">
+                            </div>
                         </div>
                     </div>
-                `).join('');
-            } catch (err) {
-                container.innerHTML = "<p style='color:red; text-align:center;'>حدث خطأ في تحميل الطلبات، تأكد من رابط الـ API.</p>";
+
+                    <!-- أبل باي -->
+                    <label class="payment-option" id="optApple">
+                        <div class="option-left">
+                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('apple')">
+                            <div>
+                                <strong id="txtAppleTitle">Apple Pay / المحافظ الإلكترونية</strong>
+                                <p id="txtAppleSub" style="font-size:0.78rem; color:var(--text-muted);">دفع سريع وآمن بلمسة زر</p>
+                            </div>
+                        </div>
+                        <span class="payment-logos"> Pay</span>
+                    </label>
+
+                    <!-- تقسيط تابي وتمارا -->
+                    <label class="payment-option" id="optTabby">
+                        <div class="option-left">
+                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('tabby')">
+                            <div>
+                                <strong id="txtTabbyTitle">قسّمها على 4 دفعات بدون فوائد (تابي / تمارا)</strong>
+                                <p id="txtTabbySub" style="font-size:0.78rem; color:var(--text-muted);">ادفع ربع المبلغ اليوم والباقي لاحقاً</p>
+                            </div>
+                        </div>
+                        <span class="payment-logos">Tabby • Tamara</span>
+                    </label>
+
+                    <!-- الدفع عند الاستلام -->
+                    <label class="payment-option" id="optCod">
+                        <div class="option-left">
+                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('cod')">
+                            <div>
+                                <strong id="txtCodTitle">الدفع نقداً عند الاستلام (COD)</strong>
+                                <p id="txtCodSub" style="font-size:0.78rem; color:var(--text-muted);">ادفع لمندوب التوصيل عند استلام الشحنة</p>
+                            </div>
+                        </div>
+                        <span class="payment-logos" id="txtCodLogo">💵 نقدي</span>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. ملخص الطلب -->
+        <aside>
+            <div class="order-summary-card">
+                <h3 id="txtSummaryTitle" style="font-size: 1.15rem; font-weight:800; margin-bottom:14px; color:var(--primary-dark);">ملخص طلبك</h3>
+                
+                <div class="order-items" id="summaryItems">
+                    <!-- سيتم ملؤها تلقائياً بالسلة الحقيقية من المتجر -->
+                </div>
+
+                <div class="coupon-box">
+                    <input type="text" class="form-input" id="couponCode" placeholder="كود الخصم (جرب: WINTER10)" style="flex:1;">
+                    <button class="coupon-btn" id="btnApplyCoupon" onclick="applyCoupon()">تطبيق</button>
+                </div>
+
+                <div class="summary-row">
+                    <span id="lblSubtotal">المجموع الفرعي:</span>
+                    <span id="subTotalTxt">0.00 ر.س</span>
+                </div>
+                <div class="summary-row" id="discountRow" style="display:none; color:var(--accent-green);">
+                    <span id="lblDiscount">الخصم المطبق (10%):</span>
+                    <span id="discountTxt">-0.00 ر.س</span>
+                </div>
+                <div class="summary-row">
+                    <span id="lblShippingMethod">الشحن السريع:</span>
+                    <span id="lblFreeShipping" style="color:var(--accent-green); font-weight:700;">مجاني</span>
+                </div>
+                <div class="summary-row total">
+                    <span id="lblFinalTotal">المبلغ الإجمالي للدفع:</span>
+                    <span id="totalTxt">0.00 ر.س</span>
+                </div>
+
+                <button class="pay-now-btn" id="btnPayNow" onclick="confirmPayment()">
+                    🔒 تأكيد الطلب والدفع الآن
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <script>
+        // قراءة لغة العميل من المتجر لتطابق اللغة المختارة
+        const savedLang = localStorage.getItem("checkout_lang") || "ar";
+        const isAr = savedLang === "ar";
+        const currency = isAr ? "ر.س" : "SAR";
+
+        // ضبط لغة واتجاه صفحة الدفع
+        const root = document.getElementById("checkoutRoot");
+        root.setAttribute("lang", savedLang);
+        root.setAttribute("dir", isAr ? "rtl" : "ltr");
+
+        if (!isAr) {
+            document.title = "Secure Checkout | CASHMERE";
+            document.getElementById("btnBackToStore").innerHTML = "<span>← Back to Winter Store</span>";
+            document.getElementById("badgeSecure").innerHTML = "🔒 256-bit SSL Encrypted & Secure";
+            document.getElementById("titleShipping").textContent = "📦 1. Shipping & Delivery Details";
+            document.getElementById("lblFname").textContent = "First Name *";
+            document.getElementById("lblLname").textContent = "Last Name *";
+            document.getElementById("lblPhone").textContent = "Phone Number *";
+            document.getElementById("lblEmail").textContent = "Email Address *";
+            document.getElementById("lblCity").textContent = "City *";
+            document.getElementById("lblDistrict").textContent = "District / Neighborhood *";
+            document.getElementById("lblAddress").textContent = "Street Address, Building No.";
+            document.getElementById("inpAddress").placeholder = "Extra delivery instructions";
+
+            document.getElementById("titlePayment").textContent = "💳 2. Select Payment Method";
+            document.getElementById("txtCardTitle").textContent = "Credit / Debit Card (Visa, Mada, Mastercard)";
+            document.getElementById("txtCardSub").textContent = "Instant, secure & encrypted checkout";
+            document.getElementById("lblCardNum").textContent = "Card Number (16 digits)";
+            document.getElementById("lblCardExp").textContent = "Expiry Date";
+            document.getElementById("lblCardCvv").textContent = "CVV";
+
+            document.getElementById("txtAppleTitle").textContent = "Apple Pay / Digital Wallets";
+            document.getElementById("txtAppleSub").textContent = "Fast 1-touch mobile checkout";
+
+            document.getElementById("txtTabbyTitle").textContent = "Split into 4 interest-free payments (Tabby / Tamara)";
+            document.getElementById("txtTabbySub").textContent = "Pay 25% today, the rest later";
+
+            document.getElementById("txtCodTitle").textContent = "Cash on Delivery (COD)";
+            document.getElementById("txtCodSub").textContent = "Pay to delivery courier upon arrival";
+            document.getElementById("txtCodLogo").textContent = "💵 Cash";
+
+            document.getElementById("txtSummaryTitle").textContent = "Order Summary";
+            document.getElementById("couponCode").placeholder = "Promo code (Try: WINTER10)";
+            document.getElementById("btnApplyCoupon").textContent = "Apply";
+            document.getElementById("lblSubtotal").textContent = "Subtotal:";
+            document.getElementById("lblDiscount").textContent = "Applied Discount (10%):";
+            document.getElementById("lblShippingMethod").textContent = "Express Delivery:";
+            document.getElementById("lblFreeShipping").textContent = "Free";
+            document.getElementById("lblFinalTotal").textContent = "Total Amount Due:";
+            document.getElementById("btnPayNow").innerHTML = "🔒 Confirm Order & Pay Now";
+        }
+
+        // قراءة مشتريات السلة مباشرة من المتجر الرئيسي
+        let currentSubtotal = 0;
+        const savedCart = localStorage.getItem("checkout_cart");
+
+        if (savedCart) {
+            try {
+                const items = JSON.parse(savedCart);
+                if (items && items.length > 0) {
+                    const itemsContainer = document.getElementById("summaryItems");
+                    itemsContainer.innerHTML = items.map(item => {
+                        const totalItem = item.price * item.qty;
+                        currentSubtotal += totalItem;
+                        const name = isAr ? (item.name_ar || item.name) : (item.name_en || item.name);
+                        const qtyText = isAr ? `المقاس: ${item.size} | الكمية: ${item.qty}` : `Size: ${item.size} | Qty: ${item.qty}`;
+                        return `
+                        <div class="order-item">
+                            <img src="${item.img}" class="order-item-img">
+                            <div class="order-item-info">
+                                <h4 class="order-item-name">${name}</h4>
+                                <span class="order-item-meta">${qtyText}</span>
+                            </div>
+                            <span class="order-item-price">${totalItem} ${currency}</span>
+                        </div>
+                        `;
+                    }).join('');
+
+                    document.getElementById("subTotalTxt").textContent = currentSubtotal.toFixed(2) + " " + currency;
+                    document.getElementById("totalTxt").textContent = currentSubtotal.toFixed(2) + " " + currency;
+                } else {
+                    document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">${isAr ? 'لم يتم العثور على قطع في السلة.' : 'No items found in bag.'}</p>`;
+                }
+            } catch(e) { console.error(e); }
+        } else {
+            document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">${isAr ? 'لم يتم العثور على قطع في السلة. يمكنك العودة للمتجر وإضافة قطع.' : 'Your bag is empty. Please return to the store and add items.'}</p>`;
+        }
+
+        function switchPayment(type) {
+            document.querySelectorAll(".payment-option").forEach(el => el.classList.remove("active"));
+            const cardBox = document.getElementById("cardDetailsBox");
+
+            if (type === 'card') {
+                document.getElementById("optCard").classList.add("active");
+                cardBox.style.display = "flex";
+            } else {
+                cardBox.style.display = "none";
+                if (type === 'apple') document.getElementById("optApple").classList.add("active");
+                if (type === 'tabby') document.getElementById("optTabby").classList.add("active");
+                if (type === 'cod') document.getElementById("optCod").classList.add("active");
             }
         }
 
-        async function deleteOrder(id) {
-            if (confirm("هل تريد حذف هذا الطلب نهائياً؟")) {
-                await fetch(`${ORDERS_API_URL}/${id}`, { method: 'DELETE' });
-                fetchOrders();
+        function applyCoupon() {
+            const code = document.getElementById("couponCode").value.trim().toUpperCase();
+            if (code === "WINTER10") {
+                const discount = currentSubtotal * 0.10;
+                const newTotal = currentSubtotal - discount;
+                document.getElementById("discountRow").style.display = "flex";
+                document.getElementById("discountTxt").textContent = `-${discount.toFixed(2)} ${currency}`;
+                document.getElementById("totalTxt").textContent = `${newTotal.toFixed(2)} ${currency}`;
+                alert(isAr ? "تهانينا! تم تطبيق كود الخصم 10% بنجاح." : "Congratulations! 10% discount applied successfully.");
+            } else {
+                alert(isAr ? "كود الخصم غير صحيح. جرب كود: WINTER10" : "Invalid coupon code. Try: WINTER10");
             }
         }
 
-        // تحميل الطلبات تلقائياً فور فتح الصفحة
-        fetchOrders();
+        function confirmPayment() {
+            const phone = document.getElementById("inpPhone").value.trim();
+            const fname = document.getElementById("inpFname").value.trim();
+            if (!fname || !phone) {
+                alert(isAr ? "يرجى كتابة الاسم ورقم الجوال أولاً لإتمام التوصيل." : "Please provide your name and phone number to complete delivery.");
+                return;
+            }
+
+            const msg = isAr ? 
+                `✅ شكراً لك يا ${fname}! تم استلام طلبك ودفع المبلغ بنجاح.\nرقم طلبك هو: #ORD-2026-9942.\nتم إرسال رابط التتبع إلى جوالك: ${phone}.` :
+                `✅ Thank you ${fname}! Your payment and order #ORD-2026-9942 have been confirmed.\nA tracking link has been sent to ${phone}.`;
+
+            alert(msg);
+            localStorage.removeItem("checkout_cart");
+            window.location.href = "index.html";
+        }
     </script>
 </body>
 </html>
