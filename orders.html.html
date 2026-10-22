@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة استقبال الطلبات | CASHMERE Admin</title>
+    <style>
+        :root {
+            --bg-primary: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --primary: #947150;
+            --primary-dark: #6D5135;
+            --text-dark: #27221E;
+            --border: #E8E2D9;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Cairo", Tahoma, sans-serif; }
+        body { background: var(--bg-primary); padding: 24px; color: var(--text-dark); }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .btn-clear { background: #D9534F; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .order-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .order-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px; }
+        .order-badge { background: #EDE6DC; color: var(--primary-dark); padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; }
+        .customer-info { font-size: 0.9rem; line-height: 1.6; margin-bottom: 12px; background: #F8F5F0; padding: 10px; border-radius: 8px; }
+        .item-row { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 4px 0; }
+        .total-row { display: flex; justify-content: space-between; font-weight: bold; margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border); font-size: 1.05rem; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div>
+            <h2>📦 لوحة استقبال الطلبات</h2>
+            <p style="color: #6E6760; font-size: 0.9rem;">كافة الطلبات المسجلة من المتجر تظهر هنا فور إرسالها</p>
+        </div>
+        <button class="btn-clear" onclick="clearAllOrders()">مسح كافة الطلبات</button>
+    </div>
+
+    <div id="ordersList"></div>
+
+    <script>
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem("store_all_orders") || "[]");
+            const container = document.getElementById("ordersList");
+
+            if (orders.length === 0) {
+                container.innerHTML = "<p style='text-align:center; padding: 40px; color:#888;'>لا توجد طلبات واردة حتى الآن.</p>";
+                return;
+            }
+
+            container.innerHTML = orders.map((ord, idx) => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <strong>رقم الطلب: ${ord.orderId}</strong>
+                            <div style="font-size:0.8rem; color:#888;">${ord.date}</div>
+                        </div>
+                        <span class="order-badge">طلب جديد</span>
+                    </div>
+
+                    <div class="customer-info">
+                        <div>👤 <strong>العميل:</strong> ${ord.customer.name}</div>
+                        <div>📞 <strong>الهاتف:</strong> <a href="tel:${ord.customer.phone}">${ord.customer.phone}</a></div>
+                        <div>📍 <strong>العنوان:</strong> ${ord.customer.city} - ${ord.customer.address}</div>
+                    </div>
+
+                    <div style="margin-bottom: 8px;"><strong>🛍️ المنتجات المطلوبة:</strong></div>
+                    ${ord.items.map(i => `
+                        <div class="item-row">
+                            <span>• ${i.name_ar} (مقاس: ${i.size}) × ${i.qty}</span>
+                            <span>${i.price * i.qty} ج.م</span>
+                        </div>
+                    `).join('')}
+
+                    <div class="total-row">
+                        <span>الإجمالي:</span>
+                        <span style="color:var(--primary);">${ord.total}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function clearAllOrders() {
+            if (confirm("هل أنت متأكد من مسح جميع الطلبات؟")) {
+                localStorage.removeItem("store_all_orders");
+                loadOrders();
+            }
+        }
+
+        loadOrders();
+    </script>
+</body>
+</html>
