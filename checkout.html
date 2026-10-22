@@ -328,7 +328,6 @@
             <a href="index.html" class="brand-logo">CASHMERE</a>
             
             <div class="header-actions-box">
-                <!-- زر الرجوع للمتجر للتسوق -->
                 <a href="index.html" class="back-to-store-btn" id="btnBackToStore">
                     <span>← العودة لمتجر الملابس الشتوية</span>
                 </a>
@@ -357,22 +356,22 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" id="lblPhone">رقم الجوال *</label>
-                        <input type="tel" id="inpPhone" class="form-input" placeholder="05XXXXXXXX / 01XXXXXXXXX" required>
+                        <input type="tel" id="inpPhone" class="form-input" placeholder="01XXXXXXXXX" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label" id="lblEmail">البريد الإلكتروني *</label>
                         <input type="email" id="inpEmail" class="form-input" placeholder="name@example.com" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" id="lblCity">المدينة *</label>
-                        <input type="text" id="inpCity" class="form-input" placeholder="الرياض / القاهرة" required>
+                        <label class="form-label" id="lblCity">المحافظة / المدينة *</label>
+                        <input type="text" id="inpCity" class="form-input" placeholder="القاهرة / الجيزة / الإسكندرية" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" id="lblDistrict">الحي السكني *</label>
-                        <input type="text" id="inpDistrict" class="form-input" placeholder="اسم الحي" required>
+                        <label class="form-label" id="lblDistrict">المنطقة / الحي السكني *</label>
+                        <input type="text" id="inpDistrict" class="form-input" placeholder="اسم الحي أو المنطقة" required>
                     </div>
                     <div class="form-group full">
-                        <label class="form-label" id="lblAddress">العنوان بالتفصيل (اسم الشارع، رقم المبنى)</label>
+                        <label class="form-label" id="lblAddress">العنوان بالتفصيل (اسم الشارع، رقم المبنى، رقم الشقة)</label>
                         <input type="text" id="inpAddress" class="form-input" placeholder="تفاصيل إضافية لتسهيل وصول المندوب">
                     </div>
                 </div>
@@ -386,20 +385,20 @@
                     <!-- بطاقة بنكية -->
                     <label class="payment-option active" id="optCard">
                         <div class="option-left">
-                            <input type="radio" name="payment" class="option-radio" checked onchange="switchPayment('card')">
+                            <input type="radio" name="payment" value="بطاقة بنكية (Visa/Mastercard)" class="option-radio" checked onchange="switchPayment('card')">
                             <div>
-                                <strong id="txtCardTitle">بطاقة ائتمان / مدى / فيزا وماستركارد</strong>
+                                <strong id="txtCardTitle">بطاقة ائتمان / ميزة / فيزا وماستركارد</strong>
                                 <p id="txtCardSub" style="font-size:0.78rem; color:var(--text-muted);">دفع فوري آمن ومحمي</p>
                             </div>
                         </div>
-                        <span class="payment-logos">💳 Visa • Mada • MC</span>
+                        <span class="payment-logos">💳 Visa • Meeza • MC</span>
                     </label>
 
                     <!-- تفاصيل البطاقة -->
                     <div class="card-details-box" id="cardDetailsBox">
                         <div class="form-group">
                             <label class="form-label" id="lblCardNum">رقم البطاقة (16 رقم)</label>
-                            <input type="text" class="form-input" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                            <input type="text" id="inpCardNumber" class="form-input" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
                         </div>
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
                             <div class="form-group">
@@ -413,34 +412,22 @@
                         </div>
                     </div>
 
-                    <!-- أبل باي -->
+                    <!-- أبل باي والمحافظ -->
                     <label class="payment-option" id="optApple">
                         <div class="option-left">
-                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('apple')">
+                            <input type="radio" name="payment" value="محفظة إلكترونية (فودافون كاش / Apple Pay)" class="option-radio" onchange="switchPayment('apple')">
                             <div>
-                                <strong id="txtAppleTitle">Apple Pay / المحافظ الإلكترونية</strong>
-                                <p id="txtAppleSub" style="font-size:0.78rem; color:var(--text-muted);">دفع سريع وآمن بلمسة زر</p>
+                                <strong id="txtAppleTitle">المحافظ الإلكترونية (فودافون كاش / أبل باي / إنستاباي)</strong>
+                                <p id="txtAppleSub" style="font-size:0.78rem; color:var(--text-muted);">دفع سريع وآمن</p>
                             </div>
                         </div>
-                        <span class="payment-logos"> Pay</span>
-                    </label>
-
-                    <!-- تقسيط تابي وتمارا -->
-                    <label class="payment-option" id="optTabby">
-                        <div class="option-left">
-                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('tabby')">
-                            <div>
-                                <strong id="txtTabbyTitle">قسّمها على 4 دفعات بدون فوائد (تابي / تمارا)</strong>
-                                <p id="txtTabbySub" style="font-size:0.78rem; color:var(--text-muted);">ادفع ربع المبلغ اليوم والباقي لاحقاً</p>
-                            </div>
-                        </div>
-                        <span class="payment-logos">Tabby • Tamara</span>
+                        <span class="payment-logos">📱 Wallets / Pay</span>
                     </label>
 
                     <!-- الدفع عند الاستلام -->
                     <label class="payment-option" id="optCod">
                         <div class="option-left">
-                            <input type="radio" name="payment" class="option-radio" onchange="switchPayment('cod')">
+                            <input type="radio" name="payment" value="الدفع عند الاستلام (COD)" class="option-radio" onchange="switchPayment('cod')">
                             <div>
                                 <strong id="txtCodTitle">الدفع نقداً عند الاستلام (COD)</strong>
                                 <p id="txtCodSub" style="font-size:0.78rem; color:var(--text-muted);">ادفع لمندوب التوصيل عند استلام الشحنة</p>
@@ -459,7 +446,7 @@
                 <h3 id="txtSummaryTitle" style="font-size: 1.15rem; font-weight:800; margin-bottom:14px; color:var(--primary-dark);">ملخص طلبك</h3>
                 
                 <div class="order-items" id="summaryItems">
-                    <!-- سيتم ملؤها تلقائياً بالسلة الحقيقية من المتجر -->
+                    <!-- سيتم ملؤها بالسلة الحقيقية من المتجر -->
                 </div>
 
                 <div class="coupon-box">
@@ -469,11 +456,11 @@
 
                 <div class="summary-row">
                     <span id="lblSubtotal">المجموع الفرعي:</span>
-                    <span id="subTotalTxt">0.00 ر.س</span>
+                    <span id="subTotalTxt">0.00 ج.م</span>
                 </div>
                 <div class="summary-row" id="discountRow" style="display:none; color:var(--accent-green);">
                     <span id="lblDiscount">الخصم المطبق (10%):</span>
-                    <span id="discountTxt">-0.00 ر.س</span>
+                    <span id="discountTxt">-0.00 ج.م</span>
                 </div>
                 <div class="summary-row">
                     <span id="lblShippingMethod">الشحن السريع:</span>
@@ -481,7 +468,7 @@
                 </div>
                 <div class="summary-row total">
                     <span id="lblFinalTotal">المبلغ الإجمالي للدفع:</span>
-                    <span id="totalTxt">0.00 ر.س</span>
+                    <span id="totalTxt">0.00 ج.م</span>
                 </div>
 
                 <button class="pay-now-btn" id="btnPayNow" onclick="confirmPayment()">
@@ -492,75 +479,31 @@
     </main>
 
     <script>
-        // قراءة لغة العميل من المتجر لتطابق اللغة المختارة
-        const savedLang = localStorage.getItem("checkout_lang") || "ar";
+        // قراءة اللغة من الصفحة الرئيسية
+        const savedLang = localStorage.getItem("preferred_lang") || localStorage.getItem("checkout_lang") || "ar";
         const isAr = savedLang === "ar";
-        const currency = isAr ? "ر.س" : "SAR";
+        const currency = "ج.م";
 
-        // ضبط لغة واتجاه صفحة الدفع
-        const root = document.getElementById("checkoutRoot");
-        root.setAttribute("lang", savedLang);
-        root.setAttribute("dir", isAr ? "rtl" : "ltr");
-
-        if (!isAr) {
-            document.title = "Secure Checkout | CASHMERE";
-            document.getElementById("btnBackToStore").innerHTML = "<span>← Back to Winter Store</span>";
-            document.getElementById("badgeSecure").innerHTML = "🔒 256-bit SSL Encrypted & Secure";
-            document.getElementById("titleShipping").textContent = "📦 1. Shipping & Delivery Details";
-            document.getElementById("lblFname").textContent = "First Name *";
-            document.getElementById("lblLname").textContent = "Last Name *";
-            document.getElementById("lblPhone").textContent = "Phone Number *";
-            document.getElementById("lblEmail").textContent = "Email Address *";
-            document.getElementById("lblCity").textContent = "City *";
-            document.getElementById("lblDistrict").textContent = "District / Neighborhood *";
-            document.getElementById("lblAddress").textContent = "Street Address, Building No.";
-            document.getElementById("inpAddress").placeholder = "Extra delivery instructions";
-
-            document.getElementById("titlePayment").textContent = "💳 2. Select Payment Method";
-            document.getElementById("txtCardTitle").textContent = "Credit / Debit Card (Visa, Mada, Mastercard)";
-            document.getElementById("txtCardSub").textContent = "Instant, secure & encrypted checkout";
-            document.getElementById("lblCardNum").textContent = "Card Number (16 digits)";
-            document.getElementById("lblCardExp").textContent = "Expiry Date";
-            document.getElementById("lblCardCvv").textContent = "CVV";
-
-            document.getElementById("txtAppleTitle").textContent = "Apple Pay / Digital Wallets";
-            document.getElementById("txtAppleSub").textContent = "Fast 1-touch mobile checkout";
-
-            document.getElementById("txtTabbyTitle").textContent = "Split into 4 interest-free payments (Tabby / Tamara)";
-            document.getElementById("txtTabbySub").textContent = "Pay 25% today, the rest later";
-
-            document.getElementById("txtCodTitle").textContent = "Cash on Delivery (COD)";
-            document.getElementById("txtCodSub").textContent = "Pay to delivery courier upon arrival";
-            document.getElementById("txtCodLogo").textContent = "💵 Cash";
-
-            document.getElementById("txtSummaryTitle").textContent = "Order Summary";
-            document.getElementById("couponCode").placeholder = "Promo code (Try: WINTER10)";
-            document.getElementById("btnApplyCoupon").textContent = "Apply";
-            document.getElementById("lblSubtotal").textContent = "Subtotal:";
-            document.getElementById("lblDiscount").textContent = "Applied Discount (10%):";
-            document.getElementById("lblShippingMethod").textContent = "Express Delivery:";
-            document.getElementById("lblFreeShipping").textContent = "Free";
-            document.getElementById("lblFinalTotal").textContent = "Total Amount Due:";
-            document.getElementById("btnPayNow").innerHTML = "🔒 Confirm Order & Pay Now";
-        }
-
-        // قراءة مشتريات السلة مباشرة من المتجر الرئيسي
         let currentSubtotal = 0;
-        const savedCart = localStorage.getItem("checkout_cart");
+        let finalPayAmount = 0;
+        let cartItems = [];
+
+        // قراءة مشتريات السلة المخزنة من المتجر الرئيسي
+        const savedCart = localStorage.getItem("winter_cart") || localStorage.getItem("checkout_cart");
 
         if (savedCart) {
             try {
-                const items = JSON.parse(savedCart);
-                if (items && items.length > 0) {
+                cartItems = JSON.parse(savedCart);
+                if (cartItems && cartItems.length > 0) {
                     const itemsContainer = document.getElementById("summaryItems");
-                    itemsContainer.innerHTML = items.map(item => {
+                    itemsContainer.innerHTML = cartItems.map(item => {
                         const totalItem = item.price * item.qty;
                         currentSubtotal += totalItem;
                         const name = isAr ? (item.name_ar || item.name) : (item.name_en || item.name);
                         const qtyText = isAr ? `المقاس: ${item.size} | الكمية: ${item.qty}` : `Size: ${item.size} | Qty: ${item.qty}`;
                         return `
                         <div class="order-item">
-                            <img src="${item.img}" class="order-item-img">
+                            <img src="${item.img}" class="order-item-img" onerror="this.src='https://placehold.co/100x120/EDE7DF/6D5135?text=CASHMERE';">
                             <div class="order-item-info">
                                 <h4 class="order-item-name">${name}</h4>
                                 <span class="order-item-meta">${qtyText}</span>
@@ -570,14 +513,15 @@
                         `;
                     }).join('');
 
+                    finalPayAmount = currentSubtotal;
                     document.getElementById("subTotalTxt").textContent = currentSubtotal.toFixed(2) + " " + currency;
-                    document.getElementById("totalTxt").textContent = currentSubtotal.toFixed(2) + " " + currency;
+                    document.getElementById("totalTxt").textContent = finalPayAmount.toFixed(2) + " " + currency;
                 } else {
-                    document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">${isAr ? 'لم يتم العثور على قطع في السلة.' : 'No items found in bag.'}</p>`;
+                    document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">السلة فارغة حالياً.</p>`;
                 }
             } catch(e) { console.error(e); }
         } else {
-            document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">${isAr ? 'لم يتم العثور على قطع في السلة. يمكنك العودة للمتجر وإضافة قطع.' : 'Your bag is empty. Please return to the store and add items.'}</p>`;
+            document.getElementById("summaryItems").innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">السلة فارغة. يرجى اختيار منتجات من المتجر أولاً.</p>`;
         }
 
         function switchPayment(type) {
@@ -590,7 +534,6 @@
             } else {
                 cardBox.style.display = "none";
                 if (type === 'apple') document.getElementById("optApple").classList.add("active");
-                if (type === 'tabby') document.getElementById("optTabby").classList.add("active");
                 if (type === 'cod') document.getElementById("optCod").classList.add("active");
             }
         }
@@ -599,31 +542,73 @@
             const code = document.getElementById("couponCode").value.trim().toUpperCase();
             if (code === "WINTER10") {
                 const discount = currentSubtotal * 0.10;
-                const newTotal = currentSubtotal - discount;
+                finalPayAmount = currentSubtotal - discount;
                 document.getElementById("discountRow").style.display = "flex";
                 document.getElementById("discountTxt").textContent = `-${discount.toFixed(2)} ${currency}`;
-                document.getElementById("totalTxt").textContent = `${newTotal.toFixed(2)} ${currency}`;
-                alert(isAr ? "تهانينا! تم تطبيق كود الخصم 10% بنجاح." : "Congratulations! 10% discount applied successfully.");
+                document.getElementById("totalTxt").textContent = `${finalPayAmount.toFixed(2)} ${currency}`;
+                alert("تهانينا! تم تطبيق كود الخصم 10% بنجاح.");
             } else {
-                alert(isAr ? "كود الخصم غير صحيح. جرب كود: WINTER10" : "Invalid coupon code. Try: WINTER10");
+                alert("كود الخصم غير صحيح. جرب كود: WINTER10");
             }
         }
 
+        // دالة تأكيد الطلب والربط مع صفحة orders.html
         function confirmPayment() {
-            const phone = document.getElementById("inpPhone").value.trim();
-            const fname = document.getElementById("inpFname").value.trim();
-            if (!fname || !phone) {
-                alert(isAr ? "يرجى كتابة الاسم ورقم الجوال أولاً لإتمام التوصيل." : "Please provide your name and phone number to complete delivery.");
+            if (!cartItems || cartItems.length === 0) {
+                alert("سلة الشراء فارغة! لا يمكن إتمام الطلب.");
                 return;
             }
 
-            const msg = isAr ? 
-                `✅ شكراً لك يا ${fname}! تم استلام طلبك ودفع المبلغ بنجاح.\nرقم طلبك هو: #ORD-2026-9942.\nتم إرسال رابط التتبع إلى جوالك: ${phone}.` :
-                `✅ Thank you ${fname}! Your payment and order #ORD-2026-9942 have been confirmed.\nA tracking link has been sent to ${phone}.`;
+            const fname = document.getElementById("inpFname").value.trim();
+            const lname = document.getElementById("inpLname").value.trim();
+            const phone = document.getElementById("inpPhone").value.trim();
+            const email = document.getElementById("inpEmail").value.trim();
+            const city = document.getElementById("inpCity").value.trim();
+            const district = document.getElementById("inpDistrict").value.trim();
+            const address = document.getElementById("inpAddress").value.trim();
 
-            alert(msg);
+            if (!fname || !phone || !city) {
+                alert("يرجى إدخال الاسم، رقم الجوال، والمدينة/المحافظة على الأقل لإتمام الطلب.");
+                return;
+            }
+
+            // معرفة وسيلة الدفع المختارة
+            const selectedPaymentRadio = document.querySelector('input[name="payment"]:checked');
+            const paymentMethod = selectedPaymentRadio ? selectedPaymentRadio.value : "بطاقة بنكية";
+
+            // إنشاء كائن الطلب الكامل
+            const orderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+            const newOrder = {
+                id: orderId,
+                date: new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }),
+                customer: {
+                    fullName: `${fname} ${lname}`.trim(),
+                    phone: phone,
+                    email: email || "غير محدد",
+                    city: city,
+                    district: district,
+                    address: address || "لم يتم تحديد تفاصيل إضافية"
+                },
+                paymentMethod: paymentMethod,
+                items: cartItems,
+                subTotal: currentSubtotal.toFixed(2) + " " + currency,
+                total: finalPayAmount.toFixed(2) + " " + currency,
+                status: "جديد (بانتظار الشحن)"
+            };
+
+            // حفظ الطلب في مصفوفة كل الطلبات (store_all_orders)
+            const existingOrders = JSON.parse(localStorage.getItem("store_all_orders") || "[]");
+            existingOrders.unshift(newOrder); // وضع الطلب الجديد في المقدمة
+            localStorage.setItem("store_all_orders", JSON.stringify(existingOrders));
+
+            // تفريغ السلة بعد إرسال الطلب
+            localStorage.removeItem("winter_cart");
             localStorage.removeItem("checkout_cart");
-            window.location.href = "index.html";
+
+            alert(`✅ شكراً لك يا ${fname}!\nتم استلام طلبك رقم (${orderId}) بنجاح.\nسيتم نقلك الآن لصفحة استقبال ومتابعة الطلبات.`);
+
+            // التحويل لصفحة استقبال الطلبات
+            window.location.href = "orders.html";
         }
     </script>
 </body>
